@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: MailPace
+  site: 'https://mailpace.com'
   base: '/'
   trailingSlash: false
 
@@ -18,7 +18,7 @@ metadata:
   openGraph:
     site_name: AstroWind
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/mailpace-logo.png'
         width: 1200
         height: 628
     type: website

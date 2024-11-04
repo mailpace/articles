@@ -20,10 +20,16 @@ export default {
       },
 
       animation: {
-        fade: 'fadeInUp 1s both',
+        fade: 'fadeInUp 0.2s both',
+        bouncing: 'softBounce 1s ease-in'
       },
 
       keyframes: {
+        softBounce: {
+          '0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
+          '40%': { transform: 'translateY(-30px)' },
+          '60%': { transform: 'translateY(-5px)' },
+        },
         fadeInUp: {
           '0%': { opacity: 0, transform: 'translateY(2rem)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },

@@ -3,119 +3,80 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: '✨ Features',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: '📧 Email API',
+          href: getPermalink('/email-api'),
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
+          text: '📬 SMTP Service',
+          href: getPermalink('/smtp-api'),
         },
         {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
+          text: '📥 Inbound Email',
+          href: getPermalink('/inbound-email'),
         },
         {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
+          text: '📨 Transactional Email',
+          href: getPermalink('/transactional-email'),
+        },
+        {
+          text: '🇪🇺 EU Hosted Email',
+          href: getPermalink('/eu-hosted-email'),
+        },
+        {
+          text: '🛡️ Spam Protection',
+          href: getPermalink('/spam-protection'),
+        },
+        {
+          text: '🔔 Webhooks',
+          href: getPermalink('/webhooks'),
+        },
+        {
+          text: '🔄 Idempotency',
+          href: getPermalink('/idempotent-emails'),
         },
       ],
     },
     {
-      text: 'Pages',
-      links: [
-        {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
-      ],
+      text: 'Pricing',
+      href: getPermalink('/pricing'),
     },
     {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
+      text: 'Documentation',
+      href: 'https://docs.mailpace.com',
     },
     {
-      text: 'Blog',
+      text: 'Resources',
       links: [
         {
-          text: 'Blog List',
+          text: '📝 Blog',
           href: getBlogPermalink(),
         },
         {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
+          text: '📘 Email Guides',
+          href: getPermalink('guides', 'category'),
         },
         {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
+          text: '📙 Tutorials',
           href: getPermalink('tutorials', 'category'),
         },
         {
-          text: 'Tag Page',
-          href: getPermalink('astro', 'tag'),
+          text: '📜 Changelog',
+          href: getPermalink('changelog', 'category'),
+        },
+        {
+          text: '💭 Musings',
+          href: getPermalink('musings', 'category'),
         },
       ],
     },
-    {
-      text: 'Widgets',
-      href: '#',
-    },
   ],
-  actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
+  actions: [
+    { text: 'Sign In', href: 'https://app.mailpace.com/', target: '_blank' },
+    { text: 'Start Sending', href: 'https://app.mailpace.com/', target: '_blank', variant: 'primary' },
+  ],
 };
 
 export const footerData = {
@@ -123,61 +84,69 @@ export const footerData = {
     {
       title: 'Product',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Pricing', href: getPermalink('/pricing') },
+        { text: 'Speed', href: getPermalink('/fast-transactional-emails') },
+        { text: 'Reviews', href: getPermalink('/testimonials') },
+        {
+          text: 'Latest Updates',
+          href: getBlogPermalink(),
+        },
       ],
     },
     {
-      title: 'Platform',
+      title: 'Features',
       links: [
-        { text: 'Developer API', href: '#' },
-        { text: 'Partners', href: '#' },
-        { text: 'Atom', href: '#' },
-        { text: 'Electron', href: '#' },
-        { text: 'AstroWind Desktop', href: '#' },
+        ...(headerData.links[0].links || []),
       ],
     },
     {
-      title: 'Support',
+      title: 'MailPace For',
       links: [
-        { text: 'Docs', href: '#' },
-        { text: 'Community Forum', href: '#' },
-        { text: 'Professional Services', href: '#' },
-        { text: 'Skills', href: '#' },
-        { text: 'Status', href: '#' },
+        { text: 'Developers', href: getPermalink('/for/developers') },
+        { text: 'Side Projects', href: getPermalink('/for/side-projects') },
+        { text: 'Startups', href: getPermalink('/for/startups') },
+        { text: 'Agencies', href: getPermalink('/for/agencies') },
+        { text: 'Bootstrappers', href: getPermalink('/for/bootstrappers') },
+        { text: 'Enterprise', href: getPermalink('/for/enterprise') },
       ],
     },
     {
-      title: 'Company',
+      title: 'MailPace vs.',
       links: [
-        { text: 'About', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Careers', href: '#' },
-        { text: 'Press', href: '#' },
-        { text: 'Inclusion', href: '#' },
-        { text: 'Social Impact', href: '#' },
-        { text: 'Shop', href: '#' },
+        { text: 'Postmark', href: getPermalink('/compare/postmark-alternative') },
+        { text: 'Resend', href: getPermalink('/compare/resend-alternative') },
+        { text: 'Mailgun', href: getPermalink('/compare/mailgun-alternative') },
+        { text: 'SendGrid', href: getPermalink('/compare/sendgrid-alternative') },
+        { text: 'SparkPost', href: getPermalink('/compare/sparkpost-alternative') },
+        { text: 'Amazon SES', href: getPermalink('/compare/aws-ses-alternative') },
+        { text: 'Mandrill', href: getPermalink('/compare/mandrill-alternative') },
+      ],
+    },
+    {
+      title: 'Resources & Support',
+      links: [
+        { text: 'Contact Us', href: 'mailto:support@mailpace.com' },
+        { text: 'Status', href: 'https://status.mailpace.com' },
+        { text: 'API Documentation', href: 'https://docs.mailpace.com' },
+        { text: 'Code Libraries', href: getPermalink('/code') },
+        { text: 'Blog', href: getBlogPermalink()},
+        { text: 'Careers', href: getPermalink('/careers') },
+        { text: 'Newsletter', href: getPermalink('/newsletter') },
       ],
     },
   ],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    { text: 'Data Protection Act (DPA)', href: getPermalink('/dpa') },
+
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/mailpace' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/onwidget/astrowind' },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/mailpace' },
   ],
   footNote: `
-    <img class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm" src="https://onwidget.com/favicon/favicon-32x32.png" alt="onWidget logo" loading="lazy"></img>
-    Made by <a class="text-blue-600 underline dark:text-muted" href="https://onwidget.com/"> onWidget</a> · All rights reserved.
+    Proudly hosted in the European Union 🇪🇺
   `,
 };
