@@ -162,6 +162,11 @@ export interface Testimonial {
   image?: string | unknown;
 }
 
+export interface Company {
+  href: string;
+  image: Image;
+  background?: string;
+}
 export interface Input {
   type: HTMLInputTypeAttribute;
   name: string;
@@ -234,6 +239,7 @@ export interface Pricing extends Omit<Headline, 'classes'>, Widget {
 
 export interface Testimonials extends Omit<Headline, 'classes'>, Widget {
   testimonials?: Array<Testimonial>;
+  companies?: Array<Company>;
   callToAction?: CallToAction;
 }
 
