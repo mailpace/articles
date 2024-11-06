@@ -28,7 +28,9 @@ export default defineConfig({
 
   integrations: [tailwind({
     applyBaseStyles: false,
-  }), sitemap(), expressiveCode(), mdx(), icon({
+  }), sitemap(), expressiveCode({
+    themes: ['dracula'],
+  }), mdx(), icon({
     include: {
       tabler: ['*'],
       'flat-color-icons': [
