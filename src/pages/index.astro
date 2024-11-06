@@ -12,6 +12,8 @@ import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import TestimonialList from '~/components/common/TestimonialList.astro';
+import CodeTabs from '~/components/widgets/CodeTabs.astro';
+import Hero from '~/components/widgets/Hero.astro';
 
 const metadata = {
   title: 'MailPace - Fast Transactional Email',
@@ -20,8 +22,6 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
   <HeroCode2
     actions={[
       {
@@ -43,11 +43,14 @@ const metadata = {
     </Fragment>
   </HeroCode2>
 
-  <!-- Note Widget ******************* -->
-
   <Note />
 
   <TestimonialList />
+
+  <h2>Integrate in minutes</h2>
+
+      <CodeTabs />
+
 
   <!-- Features Widget *************** -->
 
@@ -375,20 +378,12 @@ const metadata = {
     actions={[
       {
         variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
+        text: 'Start Sending',
+        href: 'https://app.mailpace.com',
         target: '_blank',
-        icon: 'tabler:download',
+        icon: 'tabler:bolt',
       },
     ]}
   >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
-    </Fragment>
   </CallToAction>
 </Layout>

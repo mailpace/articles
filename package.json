@@ -29,11 +29,12 @@
     "@fontsource-variable/inter": "^5.1.0",
     "astro": "^4.16.2",
     "astro-embed": "^0.7.4",
+    "astro-expressive-code": "^0.38.1",
     "astro-icon": "^1.1.1",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
-    "unpic": "^3.18.0",
-    "typed.js": "^2.1.0"
+    "typed.js": "^2.1.0",
+    "unpic": "^3.18.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
