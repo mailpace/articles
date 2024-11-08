@@ -67,6 +67,10 @@ export const headerData = {
           href: getPermalink('changelog', 'category'),
         },
         {
+          text: '📄 Email Templates',
+          href: 'https://github.com/mailpace/templates',
+        },
+        {
           text: '💭 Musings',
           href: getPermalink('musings', 'category'),
         },
@@ -87,6 +91,9 @@ export const footerData = {
         { text: 'Pricing', href: getPermalink('/pricing') },
         { text: 'Speed', href: getPermalink('/fast-transactional-emails') },
         { text: 'Reviews', href: getPermalink('/testimonials') },
+        { text: 'What are Transactional Emails?', href: getPermalink('/what-are-transactional-emails') },
+        { text: 'High Delivery Rates', href: getPermalink('/how-we-keep-delivery-rates-high') },
+        { text: 'Simple Sending', href: getPermalink('/simple-transactional-emails') },
         {
           text: 'Latest Updates',
           href: getBlogPermalink(),

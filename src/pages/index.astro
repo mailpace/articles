@@ -11,6 +11,7 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import TestimonialList from '~/components/common/TestimonialList.astro';
 import CodeTabs from '~/components/widgets/CodeTabs.astro';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'MailPace - Fast Transactional Email',
@@ -28,7 +29,7 @@ const metadata = {
         target: '_blank',
         icon: 'tabler:bolt',
       },
-      { text: 'Learn more', href: '#features' },
+      { text: 'Learn more', href: '#testimonials' },
     ]}
   >
     <Fragment slot="title"> Fast Transactional Email </Fragment>
@@ -38,7 +39,7 @@ const metadata = {
 
   <Note />
 
-  <TestimonialList />
+  <TestimonialList id="testimonials" />
 
   <CodeTabs />
 
@@ -166,7 +167,7 @@ const metadata = {
       {
         title: 'Fully Independent',
         description:
-          "We're not owned by a billionaire, we're a small, independent company helping to get Transactional Emails to inboxes for our customers ",
+          "We're not owned by a billionaire, we're an independent company helping to get Transactional Emails to inboxes for our customers ",
         icon: 'tabler:building',
       },
       {
@@ -184,7 +185,7 @@ const metadata = {
       {
         title: 'We HATE spam',
         description:
-          'We have a five-layer approach to ensuring that our service is never used for spam. Keeping our reputation high and inboxes cleaner',
+          'We have a five-layer approach to ensuring that our service is never used for spam. Keeping your reputation high and getting your emails to inboxes',
         icon: 'tabler:shield-check',
       },
       {
@@ -209,110 +210,38 @@ const metadata = {
   <!-- Content Widget **************** -->
 
   <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    
     items={[
       {
-        title: 'Built on top of Astro 4.0',
+        title: 'Carbon Neutral Infrastructure',
         description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+          'Our email infrastructure runs on 100% carbon-neutral, renewable energy powered servers ',
       },
       {
-        title: 'Styled using Tailwind CSS',
+        title: 'Local, European Providers',
         description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+          'We use small, local providers for hosting, with all data hosted in the EU.',
       },
       {
-        title: 'Cross-browser compatibility',
+        title: 'We put privacy first',
         description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
+          "No read tracking - we only check if the receiving server accepted the email, we never invade a person's inbox privacy.",
+      },
+      {
+        title: 'Anti-Spam',
+        description:
+          "No spam - we enforce DKIM validation, actively remove spammers and automatically check all outbound emails for spam.",
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
+      src: '~/assets/images/undraw_privacy_protection.svg',
+      class: 'rounded-lg bg-white dark:bg-slate-800 p-20 hidden md:block',
+      alt: 'Privacy Image',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Eco-Friendly, European-Focused, Privacy First.</h3>
     </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
-      },
-      {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
-      },
-      {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
-      },
-      {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
 
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
@@ -327,20 +256,28 @@ const metadata = {
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'Why MailPace?',
-        description: '...',
+        title: 'Can I include open/read tracking?',
+        description: 'We do not support this, however if you want to include one and track users yourself, you can manually. Note that in order to be GDPR compliant you must get the user to opt-in to tracking first.',
       },
       {
         title: 'Can I send Marketing Emails with MailPace?',
-        description: 'No. Only Transactional Emails are supported. ',
+        description: `No. Only Transactional Emails are supported. For a complete definition of what a Transactional Email is, see <a class="text-blue-500" href="${getPermalink('/what-are-transactional-emails')}">what are transactional emails</a>.`,
       },
       {
         title: 'Do you support my code library or framework?',
-        description: "Probably! If you can't find what you need in our Docs, reach out to us at support@mailpace.com ",
+        description: `Probably! If you can't find what you need in our Docs, reach out to us at <a class="text-blue-500" href="mailto:support@mailpace.com">support@mailpace.com</a>.`,
       },
       {
         title: 'I need to send more than 1.5 million emails/month',
-        description: 'Contact us for a bespoke quote.',
+        description: 'Contact us at <a class="text-blue-500" href="mailto:support@mailpace.com">support@mailpace.com</a> for a bespoke quote.',
+      },
+      {
+        title: 'Can I pay with Crypto?',
+        description: 'No, only payments supported by our payment provider Paddle.com are supported.',
+      },
+      {
+        title: 'Can you add my new feature idea?',
+        description: `Sure! Drop us an email at <a class="text-blue-500" href="mailto:support@mailpace.com">support@mailpace.com</a> and we'll see what we can do.`,
       },
     ]}
   />
@@ -354,6 +291,7 @@ const metadata = {
   />
 
   <CallToAction
+    
     title="Ready to send?"
     actions={[
       {
