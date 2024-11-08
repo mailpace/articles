@@ -21,7 +21,7 @@ export default {
 
       animation: {
         fade: 'fadeInUp 0.2s both',
-        bouncing: 'softBounce 1s ease-in'
+        bouncing: 'softBounce 1s ease-in',
       },
 
       keyframes: {

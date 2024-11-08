@@ -71,7 +71,9 @@ const {
         {content && <Fragment set:html={content} />}
       </div>
       <div class="basis-1/2">
-        <div class="relative m-auto mr-8 max-w-5xl intersect-once intercept-no-queue motion-safe:md:intersect:animate-bouncing intersect-quarter">
+        <div
+          class="relative m-auto mr-8 max-w-5xl intersect-once intercept-no-queue motion-safe:md:intersect:animate-bouncing intersect-quarter"
+        >
           <div class="mx-2 w-full xl:w-4/5 p-6 text-base rounded-md shadow-2xl bg-gray-800 max-h-80 min-h-80">
             <div class="relative mb-2">
               <div class="absolute -top-5 -right-5 flex items-center h-8 space-x-1.5 px-3">
@@ -91,7 +93,8 @@ const {
 <script>
   import Typed from 'typed.js';
   // Text to simulate typing
-	const textToType = "$ curl <span class=\"text-white\">https://app.mailpace.com/api/v1/send</span>\n -H MailPace-Server-Token: a3c4-efg6 \n -d {\n    from: awesome@developer.com,\n    to: important@users.com,\n    subject: Woah, MailPace Rocks!\n} \n\n`<span class=\"text-gray-500\">Sending...</span>`\n^250<span class=\"text-green-200\">✓ Email Sent!</span>";
+  const textToType =
+    '$ curl <span class="text-white">https://app.mailpace.com/api/v1/send</span>\n -H MailPace-Server-Token: a3c4-efg6 \n -d {\n    from: awesome@developer.com,\n    to: important@users.com,\n    subject: Woah, MailPace Rocks!\n} \n\n`<span class="text-gray-500">Sending...</span>`\n^250<span class="text-green-200">✓ Email Sent!</span>';
 
   new Typed('#terminal-line', {
     strings: [textToType],

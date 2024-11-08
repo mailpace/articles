@@ -102,9 +102,7 @@ export const footerData = {
     },
     {
       title: 'Features',
-      links: [
-        ...(headerData.links[0].links || []),
-      ],
+      links: [...(headerData.links[0].links || [])],
     },
     {
       title: 'MailPace For',
@@ -136,7 +134,7 @@ export const footerData = {
         { text: 'Status', href: 'https://status.mailpace.com' },
         { text: 'API Documentation', href: 'https://docs.mailpace.com' },
         { text: 'Code Libraries', href: getPermalink('/code') },
-        { text: 'Blog', href: getBlogPermalink()},
+        { text: 'Blog', href: getBlogPermalink() },
         { text: 'Careers', href: getPermalink('/careers') },
         { text: 'Newsletter', href: getPermalink('/newsletter') },
       ],
@@ -146,7 +144,6 @@ export const footerData = {
     { text: 'Terms', href: getPermalink('/terms') },
     { text: 'Privacy Policy', href: getPermalink('/privacy') },
     { text: 'Data Protection Act (DPA)', href: getPermalink('/dpa') },
-
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/mailpace' },
