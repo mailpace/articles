@@ -23,7 +23,7 @@ interface MenuLink extends Link {
 export interface Props {
   id?: string;
   links?: Array<MenuLink>;
-  actions?: Array<CallToAction>;
+  actions?: Array<CallToAction> | Array<Link>;
   isSticky?: boolean;
   isDark?: boolean;
   isFullWidth?: boolean;

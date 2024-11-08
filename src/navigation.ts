@@ -78,7 +78,7 @@ export const headerData = {
     },
   ],
   actions: [
-    { text: 'Sign In', href: 'https://app.mailpace.com/', target: '_blank' },
+    { text: 'Sign In', href: 'https://app.mailpace.com/', target: '_blank', variant: 'secondary' },
     { text: 'Start Sending', href: 'https://app.mailpace.com/', target: '_blank', variant: 'primary' },
   ],
 };
