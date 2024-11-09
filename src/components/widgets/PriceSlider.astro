@@ -2,7 +2,7 @@
 import Headline from '~/components/ui/Headline.astro';
 
 const emailsSent = 10000;
-const basePrice = 15;
+const basePrice = 12;
 ---
 
 <Headline subtitle="How many emails do you send and receive each month?" />
@@ -17,7 +17,7 @@ const basePrice = 15;
     step="1"
     class="w-4/5 h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
   />
-  <div class="tooltip" id="tooltip">
+  <div class="text-white text-sm absolute bg-slate-600 p-2 rounded -translate-x-2/4 hidden" id="tooltip">
     <span id="emails-sent-tooltip">{new Intl.NumberFormat('en-US').format(emailsSent)}</span> emails
   </div>
   <div class="w-4/5 flex justify-between text-xs ml-4 mt-2">
@@ -44,25 +44,12 @@ const basePrice = 15;
   </div>
 </div>
 
-<style>
-  .tooltip {
-    position: absolute;
-    background-color: #333;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 12px;
-    display: none;
-    transform: translateX(-50%);
-  }
-</style>
-
 <script>
   let emailsSent = 10000;
   const pricePerThousand = 1.0;
-  const basePrice = 10;
+  const basePrice = 12;
 
-  const calculateEmailsFromScale = (userInputIndex) => {
+  const calculateEmailsFromScale = (userInputIndex: number) => {
     if (userInputIndex === 0) return 100;
     if (userInputIndex <= 200) return 100 + ((10000 - 100) / 200) * userInputIndex;
     if (userInputIndex <= 400) return 10000 + ((100000 - 10000) / 200) * (userInputIndex - 200);
@@ -72,14 +59,14 @@ const basePrice = 15;
     return 1000000;
   };
 
-  function calculatePrice(emails) {
+  function calculatePrice(emails: number) {
     return emails > 10000 ? basePrice + (pricePerThousand * (emails - 10000)) / 1000 : basePrice;
   }
 
-  function handleSliderChange(event) {
-    const target = event.target;
+  function handleSliderChange(event: Event) {
+    const target = event.target as HTMLInputElement;
     if (target) {
-      emailsSent = calculateEmailsFromScale(target.value);
+      emailsSent = calculateEmailsFromScale(parseInt(target.value));
     }
     const price = calculatePrice(emailsSent);
 
@@ -102,31 +89,32 @@ const basePrice = 15;
       }).format(emailsSent);
     }
 
-    if (tooltip && target) {
-      const sliderRect = target.getBoundingClientRect();
-      const tooltipRect = tooltip.getBoundingClientRect();
-      const sliderThumbWidth = 20; // approximate width of the slider thumb
-      const sliderValue = target.value;
-      const maxSliderValue = target.max;
+    if (tooltip && target) positionTooltip(target, tooltip);
+  }
 
-      const left = sliderRect.left + (sliderRect.width - sliderThumbWidth) * (sliderValue / maxSliderValue) + sliderThumbWidth / 2;
-      tooltip.style.left = `${left}px`;
-      tooltip.style.top = `${sliderRect.top - tooltipRect.height - 10}px`;
-      tooltip.style.display = 'block';
-    }
+  function positionTooltip(target: HTMLInputElement, tooltip: HTMLElement) {
+    const sliderRect = target.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const sliderThumbWidth = 20; // approximate width of the slider thumb
+    const sliderValue = parseInt(target.value);
+    const maxSliderValue = parseInt(target.max);
+
+    const left =
+      sliderRect.left + (sliderRect.width - sliderThumbWidth) * (sliderValue / maxSliderValue) + sliderThumbWidth / 2;
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${sliderRect.top - tooltipRect.height - 10}px`;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    const slider = document.getElementById('price-slider');
+    const slider = document.getElementById('price-slider') as HTMLInputElement;
     if (slider) {
       slider.addEventListener('input', handleSliderChange);
-      slider.addEventListener('mouseenter', () => {
-        const tooltip = document.getElementById('tooltip');
-        if (tooltip) {
-          tooltip.style.display = 'block';
-        }
-      });
 
+      // Set slide to 10,000 emails (20%) on page load
+      slider.value = '200';
+      const tooltip = document.getElementById('tooltip') as HTMLInputElement;
+      tooltip.style.display = 'block';
+      positionTooltip(slider, tooltip);
     }
   });
 </script>
