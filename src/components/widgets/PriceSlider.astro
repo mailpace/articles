@@ -1,0 +1,132 @@
+---
+import Headline from '~/components/ui/Headline.astro';
+
+const emailsSent = 10000;
+const basePrice = 15;
+---
+
+<Headline subtitle="How many emails do you send and receive each month?" />
+
+<div class="flex flex-col items-center justify-center p-4">
+  <input
+    id="price-slider"
+    type="range"
+    min="0"
+    max="1000"
+    value="200"
+    step="1"
+    class="w-4/5 h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+  />
+  <div class="tooltip" id="tooltip">
+    <span id="emails-sent-tooltip">{new Intl.NumberFormat('en-US').format(emailsSent)}</span> emails
+  </div>
+  <div class="w-4/5 flex justify-between text-xs ml-4 mt-2">
+    <span>100</span>
+    <span class="ml-3">10,000</span>
+    <span class="">100,000</span>
+    <span class="">300,000</span>
+    <span class="">600,000</span>
+    <span>1,000,000</span>
+  </div>
+
+  <div class="mt-4 text-lg font-semibold">
+    <span id="total-price" class="text-2xl"
+      >{
+        new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).format(basePrice)
+      }</span
+    >
+    per Month
+  </div>
+</div>
+
+<style>
+  .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: none;
+    transform: translateX(-50%);
+  }
+</style>
+
+<script>
+  let emailsSent = 10000;
+  const pricePerThousand = 1.0;
+  const basePrice = 10;
+
+  const calculateEmailsFromScale = (userInputIndex) => {
+    if (userInputIndex === 0) return 100;
+    if (userInputIndex <= 200) return 100 + ((10000 - 100) / 200) * userInputIndex;
+    if (userInputIndex <= 400) return 10000 + ((100000 - 10000) / 200) * (userInputIndex - 200);
+    if (userInputIndex <= 600) return 100000 + ((300000 - 100000) / 200) * (userInputIndex - 400);
+    if (userInputIndex <= 800) return 300000 + ((600000 - 300000) / 200) * (userInputIndex - 600);
+    if (userInputIndex <= 999) return 600000 + ((1000000 - 600000) / 199) * (userInputIndex - 800);
+    return 1000000;
+  };
+
+  function calculatePrice(emails) {
+    return emails > 10000 ? basePrice + (pricePerThousand * (emails - 10000)) / 1000 : basePrice;
+  }
+
+  function handleSliderChange(event) {
+    const target = event.target;
+    if (target) {
+      emailsSent = calculateEmailsFromScale(target.value);
+    }
+    const price = calculatePrice(emailsSent);
+
+    const totalPriceElement = document.getElementById('total-price');
+    if (totalPriceElement) {
+      totalPriceElement.textContent = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(Math.round(price));
+    }
+
+    const tooltip = document.getElementById('tooltip');
+    const emailsSentTooltip = document.getElementById('emails-sent-tooltip');
+    if (emailsSentTooltip) {
+      emailsSentTooltip.textContent = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(emailsSent);
+    }
+
+    if (tooltip && target) {
+      const sliderRect = target.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const sliderThumbWidth = 20; // approximate width of the slider thumb
+      const sliderValue = target.value;
+      const maxSliderValue = target.max;
+
+      const left = sliderRect.left + (sliderRect.width - sliderThumbWidth) * (sliderValue / maxSliderValue) + sliderThumbWidth / 2;
+      tooltip.style.left = `${left}px`;
+      tooltip.style.top = `${sliderRect.top - tooltipRect.height - 10}px`;
+      tooltip.style.display = 'block';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('price-slider');
+    if (slider) {
+      slider.addEventListener('input', handleSliderChange);
+      slider.addEventListener('mouseenter', () => {
+        const tooltip = document.getElementById('tooltip');
+        if (tooltip) {
+          tooltip.style.display = 'block';
+        }
+      });
+
+    }
+  });
+</script>
