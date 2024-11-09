@@ -102,7 +102,7 @@ const basePrice = 12;
     const left =
       sliderRect.left + (sliderRect.width - sliderThumbWidth) * (sliderValue / maxSliderValue) + sliderThumbWidth / 2;
     tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${sliderRect.top - tooltipRect.height - 10}px`;
+    tooltip.style.top = `${sliderRect.top + window.scrollY - tooltipRect.height - 10}px`;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
