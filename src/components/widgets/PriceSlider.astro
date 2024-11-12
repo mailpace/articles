@@ -2,149 +2,155 @@
 import Headline from '~/components/ui/Headline.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 
-const emailsSent = 10000;
-const basePrice = 12;
-const incrementalPrice = 100;
-const pricePerThousand = 1;
-const increments = 10;
 ---
 
-<Headline subtitle="How many emails do you send and receive each month?" />
+<div x-data="emailPricing()" x-init="initSlider">
+  <Headline subtitle="How many emails do you send and receive each month?" />
 
-<div class="flex flex-col items-center justify-center p-4">
-  <input
-    id="price-slider"
-    type="range"
-    min="0"
-    max="1000"
-    value="200"
-    step="1"
-    class="w-4/5 h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-  />
-  <div class="text-white text-sm absolute bg-slate-600 p-2 rounded -translate-x-2/4 hidden" id="tooltip">
-    <span id="emails-sent-tooltip">{new Intl.NumberFormat('en-US').format(emailsSent)}</span> emails
+  <div class="flex flex-col items-center justify-center p-4">
+    <input
+      id="price-slider"
+      type="range"
+      min="0"
+      max="1000"
+      x-model="sliderValue"
+      @input="updatePricing"
+      class="w-4/5 h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+    />
+    <div 
+      class="text-white text-sm absolute bg-slate-600 p-2 rounded -translate-x-2/4"
+      x-show="showTooltip"
+      x-bind:style="{ left: tooltipPosition.left + 'px', top: tooltipPosition.top + 'px' }"
+      id="tooltip"
+    >
+      <span x-text="emailsFormatted"></span> emails
+    </div>
+    <div class="w-4/5 flex justify-between text-xs ml-4 mt-2">
+      <span>100</span>
+      <span class="ml-3">10,000</span>
+      <span>100,000</span>
+      <span>300,000</span>
+      <span>600,000</span>
+      <span>1,000,000</span>
+    </div>
   </div>
-  <div class="w-4/5 flex justify-between text-xs ml-4 mt-2">
-    <span>100</span>
-    <span class="ml-3">10,000</span>
-    <span class="">100,000</span>
-    <span class="">300,000</span>
-    <span class="">600,000</span>
-    <span>1,000,000</span>
+
+  <div class="flex flex-col md:flex-row mt-4 w-full">
+    <div class="w-full md:w-1/2 text-center mb-4 md:mb-0 mt-4 mx-20 p-4 border">
+      <span x-text="totalPriceFormatted" class="font-semibold text-4xl"></span>
+      <div class="text-gray-500">per Month</div>
+      <div class="text-gray-500 text-sm mt-2 flex justify-between">
+        <div class="flex-1 text-left">
+          <div>The first 10,000 emails:</div>
+          <div>The next <span x-text="additionalEmails"></span> emails:</div>
+        </div>
+        <div class="flex-1 text-right">
+          <div>$12</div>
+          <div><span x-text="incrementalPrice"></span></div>
+        </div>
+      </div>
+      <CallToAction title="Get sending"
+      />
+    </div>
+    <div class="w-full md:w-1/2 text-center md:text-left">
+      <h2 class="font-semibold text-lg mb-2">Includes support for everything we have</h2>
+      <ul class="list-disc list-inside text-gray-500">
+        <li>Unlimited users</li>
+        <li>Unlimited projects</li>
+        <li>Unlimited storage</li>
+        <li>Unlimited support</li>
+      </ul>
+    </div>
   </div>
 </div>
 
-<div class="flex flex-col md:flex-row mt-4 w-full">
-  <div class="w-full md:w-1/2 text-center mb-4 md:mb-0 mt-4 mx-20 p-4 border">
-    <span id="total-price" class="font-semibold text-4xl">
-      {
-        new Intl.NumberFormat('en-US', {
+<script is:inline>
+  function emailPricing() {
+    return {
+      // initial values, some are ovverriden by paddle when we initialize the slider
+      sliderValue: 200,
+      emailsSent: 10000,
+      basePrice: 12,
+      pricePerThousand: 1.0,
+      increments: 0,
+      showTooltip: true,
+      tooltipPosition: { left: 0, top: 0 },
+
+      get emailsFormatted() {
+        return new Intl.NumberFormat('en-US', {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).format(this.emailsSent);
+      },
+
+      get totalPrice() {
+        return this.emailsSent > 10000
+          ? this.basePrice + (this.pricePerThousand * (this.emailsSent - 10000)) / 1000
+          : this.basePrice;
+      },
+
+      get totalPriceFormatted() {
+        return new Intl.NumberFormat('en-US', {
           style: 'currency',
           currency: 'USD',
           minimumFractionDigits: 0,
           maximumFractionDigits: 0,
-        }).format(basePrice)
-      }
-    </span>
-    <div class="text-gray-500">per Month</div>
+        }).format(this.totalPrice);
+      },
 
-    <div class="text-gray-500 text-sm mt-2">
-      <div>The first 10,000 emails: ${basePrice}</div>
-      <div>The next ${emailsSent - 10000} emails: ${incrementalPrice} ({pricePerThousand} x ${increments})</div>
-    </div>
+      get additionalEmails() {
+        const additional = this.emailsSent > 10000 ? this.emailsSent - 10000 : 0;
+        this.increments = Math.ceil(additional / 1000);
 
-    <CallToAction
-      actions={[
-        {
-          variant: 'primary',
-          text: 'Start Sending!',
-          href: '/',
-        },
-      ]}
-    />
-  </div>
-  <div class="w-full md:w-1/2 text-center md:text-left">
-    <h2 class="font-semibold text-lg mb-2">Includes support for everything we have</h2>
-    <ul class="list-disc list-inside text-gray-500">
-      <li>Unlimited users</li>
-      <li>Unlimited projects</li>
-      <li>Unlimited storage</li>
-      <li>Unlimited support</li>
-    </ul>
-  </div>
-</div>
+        return new Intl.NumberFormat('en-US').format(additional, {
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        })
+      },
 
-<script>
-  let emailsSent = 10000;
-  const pricePerThousand = 1.0;
-  const basePrice = 12;
+      get incrementalPrice() {
+        return `$${this.pricePerThousand * this.increments}`;
+      },
 
-  const calculateEmailsFromScale = (userInputIndex: number) => {
-    if (userInputIndex === 0) return 100;
-    if (userInputIndex <= 200) return 100 + ((10000 - 100) / 200) * userInputIndex;
-    if (userInputIndex <= 400) return 10000 + ((100000 - 10000) / 200) * (userInputIndex - 200);
-    if (userInputIndex <= 600) return 100000 + ((300000 - 100000) / 200) * (userInputIndex - 400);
-    if (userInputIndex <= 800) return 300000 + ((600000 - 300000) / 200) * (userInputIndex - 600);
-    if (userInputIndex <= 999) return 600000 + ((1000000 - 600000) / 199) * (userInputIndex - 800);
-    return 1000000;
-  };
+      updatePricing(currency = 'EUR', initialEmails = 1000, incrementalPrice = 1.0) {
+        this.emailsSent = this.calculateEmailsFromScale(this.sliderValue);
+        this.positionTooltip();
+        // update the currency label/formatting
+        // update the email calculation
+      },
 
-  function calculatePrice(emails: number) {
-    return emails > 10000 ? basePrice + (pricePerThousand * (emails - 10000)) / 1000 : basePrice;
+      calculateEmailsFromScale(value) {
+        if (value === 0) return 100;
+        if (value <= 200) return 100 + ((10000 - 100) / 200) * value;
+        if (value <= 400) return 10000 + ((100000 - 10000) / 200) * (value - 200);
+        if (value <= 600) return 100000 + ((300000 - 100000) / 200) * (value - 400);
+        if (value <= 800) return 300000 + ((600000 - 300000) / 200) * (value - 600);
+        if (value <= 999) return 600000 + ((1000000 - 600000) / 199) * (value - 800);
+        return 1000000;
+      },
+
+      positionTooltip() {
+        const slider = document.getElementById('price-slider');
+        const tooltip = document.getElementById('tooltip');
+        const sliderRect = slider.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        const sliderThumbWidth = 20; // approximate width of the slider thumb
+        const maxSliderValue = parseInt(slider.max);
+
+        const left = 
+          sliderRect.left + (sliderRect.width - sliderThumbWidth) * (this.sliderValue / maxSliderValue) + sliderThumbWidth / 2;
+        this.tooltipPosition.left = left;
+        this.tooltipPosition.top = sliderRect.top + window.scrollY - tooltipRect.height - 10;
+      },
+
+      initSlider() {
+        const currency = 'EUR';
+        const initialEmails = 10000;
+        const incrementalPrice = 1.0;
+
+        this.updatePricing(currency, initialEmails, incrementalPrice);
+      },
+    };
   }
-
-  function handleSliderChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target) {
-      emailsSent = calculateEmailsFromScale(parseInt(target.value));
-    }
-    const price = calculatePrice(emailsSent);
-
-    const totalPriceElement = document.getElementById('total-price');
-    if (totalPriceElement) {
-      totalPriceElement.textContent = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(Math.round(price));
-    }
-
-    const tooltip = document.getElementById('tooltip');
-    const emailsSentTooltip = document.getElementById('emails-sent-tooltip');
-    if (emailsSentTooltip) {
-      emailsSentTooltip.textContent = new Intl.NumberFormat('en-US', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-      }).format(emailsSent);
-    }
-
-    if (tooltip && target) positionTooltip(target, tooltip);
-  }
-
-  function positionTooltip(target: HTMLInputElement, tooltip: HTMLElement) {
-    const sliderRect = target.getBoundingClientRect();
-    const tooltipRect = tooltip.getBoundingClientRect();
-    const sliderThumbWidth = 20; // approximate width of the slider thumb
-    const sliderValue = parseInt(target.value);
-    const maxSliderValue = parseInt(target.max);
-
-    const left =
-      sliderRect.left + (sliderRect.width - sliderThumbWidth) * (sliderValue / maxSliderValue) + sliderThumbWidth / 2;
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${sliderRect.top + window.scrollY - tooltipRect.height - 10}px`;
-  }
-
-  document.addEventListener('astro:page-load', () => {
-    const slider = document.getElementById('price-slider') as HTMLInputElement;
-    if (slider) {
-      slider.addEventListener('input', handleSliderChange);
-
-      // Set slide to 10,000 emails (20%) on page load
-      slider.value = '200';
-      const tooltip = document.getElementById('tooltip') as HTMLInputElement;
-      tooltip.style.display = 'block';
-      positionTooltip(slider, tooltip);
-    }
-  });
 </script>
+
