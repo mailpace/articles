@@ -28,9 +28,11 @@ const basePrice = 12;
     <span class="">600,000</span>
     <span>1,000,000</span>
   </div>
+</div>
 
-  <div class="mt-4 text-lg font-semibold">
-    <span id="total-price" class="text-2xl"
+<div class="flex">
+  <div class="mt-4 w-1/2">
+    <span id="total-price" class="font-semibold text-4xl"
       >{
         new Intl.NumberFormat('en-US', {
           style: 'currency',
@@ -40,8 +42,8 @@ const basePrice = 12;
         }).format(basePrice)
       }</span
     >
-    per Month
   </div>
+  <div class="mt-6 ml-2 text-gray-500">per Month</div>
 </div>
 
 <script>
@@ -105,7 +107,7 @@ const basePrice = 12;
     tooltip.style.top = `${sliderRect.top + window.scrollY - tooltipRect.height - 10}px`;
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const slider = document.getElementById('price-slider') as HTMLInputElement;
     if (slider) {
       slider.addEventListener('input', handleSliderChange);
