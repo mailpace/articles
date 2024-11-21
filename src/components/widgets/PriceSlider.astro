@@ -3,18 +3,16 @@ import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
 
 // TODO
-// - fix layout
+// - fix bug with slider not loading up
 // - paddle prices
 // - yearly pricing
-// - update context/text
-// - fix bugs with slider
 // - embed some other convincing content
 ---
 
 <div x-data="emailPricing()" x-init="initSlider">
   <Headline subtitle="How many emails do you send and receive each month?" classes={{ container: 'px-8 mb-10' }} />
 
-  <div class="flex flex-col items-center justify-center p-4 mb-10 mt-10">
+  <div class="flex flex-col items-center justify-center p-4 mb-10 mt-10 w-full md:w-3/4 mx-auto">
     <input
       id="price-slider"
       type="range"
