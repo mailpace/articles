@@ -138,7 +138,8 @@ import Button from '~/components/ui/Button.astro';
       },
 
       get pricePerThousandFormatted() {
-        return this.formatCurrency(this.pricePerThousand * this.increments, this.region);
+        const additionalPrice = this.emailsSent > 10000 ? (this.pricePerThousand * (this.emailsSent - 10000)) / 1000 : 0;
+        return this.formatCurrency(additionalPrice, this.region);
       },
 
       get additionalEmails() {
