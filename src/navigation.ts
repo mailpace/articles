@@ -59,10 +59,6 @@ export const headerData = {
           href: getPermalink('guides', 'category'),
         },
         {
-          text: '📙 Tutorials',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
           text: '📜 Changelog',
           href: getPermalink('changelog', 'category'),
         },
