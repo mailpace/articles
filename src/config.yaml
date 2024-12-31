@@ -9,22 +9,22 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: MailPace
+    template: '%s — MailPace'
+  description: "Transactional Email Service you can rely on."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: MailPace
     images:
       - url: '~/assets/images/mailpace-logo.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
+    handle: '@mailpace'
+    site: '@mailpace'
     cardType: summary_large_image
 
 i18n:
@@ -38,7 +38,7 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: '/blog/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
       robots:
         index: true
 
