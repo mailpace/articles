@@ -3,6 +3,7 @@ title: What is an idempotent request?
 publishDate: 2024-08-16T08:00:03.284Z
 excerpt: A short story about idempotency
 category: Musings
+image: ~/assets/images/blog/title_cards/a-short-story-about-idempotent-requests.png
 ---
 
 At MailPace, we recently added support for Idempotent requests, on our `/send` endpoint. If you already know what that is, check out our [Idempotency docs](https://docs.mailpace.com/guide/idempotency/) and go ahead and get started sending with it. If not, read on...

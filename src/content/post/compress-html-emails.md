@@ -3,6 +3,7 @@ title: How to compress HTML emails
 publishDate: 2024-01-04T22:22:03.284Z
 excerpt: How we compress HTML emails to maximise delivery speed
 category: Changelog
+image: ~/assets/images/blog/title_cards/compress-html-emails.png
 ---
 
 Happy New Year and welcome to 2024!

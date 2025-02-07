@@ -3,6 +3,7 @@ title: How to set up more than one SMTP provider
 publishDate: 2024-07-28T08:00:03.284Z
 excerpt: Setting Up Multiple SMTP Transactional Email Providers, A Guide for Developers
 category: Guides
+image: ~/assets/images/blog/title_cards/how-to-set-up-two-smtp-email-providers.png
 ---
 
 At MailPace, we believe in simple, fast, and reliable email delivery for your applications and services. To make this a reality, we strongly recommend that all developers working on email set up two or more SMTP providers (ideally we should be one of them), and split traffic, or be ready to swap over as needed.
