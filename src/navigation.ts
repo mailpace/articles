@@ -4,40 +4,41 @@ export const headerData = {
   links: [
     {
       text: '✨ Features',
-      links: [
-        {
-          text: '📧 Email API',
-          href: getPermalink('/email-api'),
-        },
-        {
-          text: '📬 SMTP Service',
-          href: getPermalink('/smtp-api'),
-        },
-        {
-          text: '📥 Inbound Email',
-          href: getPermalink('/inbound-email'),
-        },
-        {
-          text: '📨 Transactional Email',
-          href: getPermalink('/transactional-email'),
-        },
-        {
-          text: '🇪🇺 EU Hosted Email',
-          href: getPermalink('/eu-hosted-email'),
-        },
-        {
-          text: '🛡️ Spam Protection',
-          href: getPermalink('/spam-protection'),
-        },
-        {
-          text: '🔔 Webhooks',
-          href: getPermalink('/webhooks'),
-        },
-        {
-          text: '🔄 Idempotency',
-          href: getPermalink('/idempotent-emails'),
-        },
-      ],
+      href: '#features',
+      // links: [
+      //   {
+      //     text: '📧 Email API',
+      //     href: getPermalink('/email-api'),
+      //   },
+      //   {
+      //     text: '📬 SMTP Service',
+      //     href: getPermalink('/smtp-api'),
+      //   },
+      //   {
+      //     text: '📥 Inbound Email',
+      //     href: getPermalink('/inbound-email'),
+      //   },
+      //   {
+      //     text: '📨 Transactional Email',
+      //     href: getPermalink('/transactional-email'),
+      //   },
+      //   {
+      //     text: '🇪🇺 EU Hosted Email',
+      //     href: getPermalink('/eu-hosted-email'),
+      //   },
+      //   {
+      //     text: '🛡️ Spam Protection',
+      //     href: getPermalink('/spam-protection'),
+      //   },
+      //   {
+      //     text: '🔔 Webhooks',
+      //     href: getPermalink('/webhooks'),
+      //   },
+      //   {
+      //     text: '🔄 Idempotency',
+      //     href: getPermalink('/idempotent-emails'),
+      //   },
+      // ],
     },
     {
       text: 'Pricing',
@@ -96,42 +97,42 @@ export const footerData = {
         },
       ],
     },
-    {
-      title: 'Features',
-      links: [...(headerData.links[0].links || [])],
-    },
-    {
-      title: 'MailPace For',
-      links: [
-        { text: 'Developers', href: getPermalink('/for/developers') },
-        { text: 'Side Projects', href: getPermalink('/for/side-projects') },
-        { text: 'Startups', href: getPermalink('/for/startups') },
-        { text: 'Agencies', href: getPermalink('/for/agencies') },
-        { text: 'Bootstrappers', href: getPermalink('/for/bootstrappers') },
-        { text: 'Enterprise', href: getPermalink('/for/enterprise') },
-      ],
-    },
-    {
-      title: 'MailPace vs.',
-      links: [
-        { text: 'Postmark', href: getPermalink('/compare/postmark-alternative') },
-        { text: 'Resend', href: getPermalink('/compare/resend-alternative') },
-        { text: 'Mailgun', href: getPermalink('/compare/mailgun-alternative') },
-        { text: 'SendGrid', href: getPermalink('/compare/sendgrid-alternative') },
-        { text: 'SparkPost', href: getPermalink('/compare/sparkpost-alternative') },
-        { text: 'Amazon SES', href: getPermalink('/compare/aws-ses-alternative') },
-        { text: 'Mandrill', href: getPermalink('/compare/mandrill-alternative') },
-      ],
-    },
+    // {
+    //   title: 'Features',
+    //   links: [...(headerData.links[0].links || [])],
+    // },
+    // {
+    //   title: 'MailPace For',
+    //   links: [
+    //     { text: 'Developers', href: getPermalink('/for/developers') },
+    //     { text: 'Side Projects', href: getPermalink('/for/side-projects') },
+    //     { text: 'Startups', href: getPermalink('/for/startups') },
+    //     { text: 'Agencies', href: getPermalink('/for/agencies') },
+    //     { text: 'Bootstrappers', href: getPermalink('/for/bootstrappers') },
+    //     { text: 'Enterprise', href: getPermalink('/for/enterprise') },
+    //   ],
+    // },
+    // {
+    //   title: 'MailPace vs.',
+    //   links: [
+    //     { text: 'Postmark', href: getPermalink('/compare/postmark-alternative') },
+    //     { text: 'Resend', href: getPermalink('/compare/resend-alternative') },
+    //     { text: 'Mailgun', href: getPermalink('/compare/mailgun-alternative') },
+    //     { text: 'SendGrid', href: getPermalink('/compare/sendgrid-alternative') },
+    //     { text: 'SparkPost', href: getPermalink('/compare/sparkpost-alternative') },
+    //     { text: 'Amazon SES', href: getPermalink('/compare/aws-ses-alternative') },
+    //     { text: 'Mandrill', href: getPermalink('/compare/mandrill-alternative') },
+    //   ],
+    // },
     {
       title: 'Resources & Support',
       links: [
         { text: 'Contact Us', href: 'mailto:support@mailpace.com' },
         { text: 'Status', href: 'https://status.mailpace.com' },
         { text: 'API Documentation', href: 'https://docs.mailpace.com' },
-        { text: 'Code Libraries', href: getPermalink('/code') },
+        // { text: 'Code Libraries', href: getPermalink('/code') },
         { text: 'Blog', href: getBlogPermalink() },
-        { text: 'Careers', href: getPermalink('/careers') },
+        // { text: 'Careers', href: getPermalink('/careers') },
         { text: 'Newsletter', href: getPermalink('/newsletter') },
       ],
     },
@@ -142,7 +143,7 @@ export const footerData = {
     { text: 'Data Protection Act (DPA)', href: getPermalink('/dpa') },
   ],
   socialLinks: [
-    { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/mailpace' },
+    // { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/mailpace' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/mailpace' },
   ],
