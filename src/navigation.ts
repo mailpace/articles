@@ -4,7 +4,7 @@ export const headerData = {
   links: [
     {
       text: '✨ Features',
-      href: '#features',
+      href: '/#features',
       // links: [
       //   {
       //     text: '📧 Email API',

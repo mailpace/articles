@@ -23,9 +23,7 @@ Well it turns out that a standard that links together browsers, logins and hardw
 
 It took a while to understand how or whether the user experience could work for us, most of the WebAuthn explanations are focused on the developer experience, or talk about the complex client-server dance during the auth process. So to test it we implemented it as a 2FA flow, where users can register credentials in our app, and use them to authenticate after providing their password.
 
-It turns out that the User Experience is really nice, here’s a gif of how it works for 2FA on a TouchID MacBook, using Safari:
-
-![Login UX demo of Webauthn for 2FA / MFA](../../assets/images/blog/webauthn-2fa-demo.gif)
+It turns out that the User Experience is also really nice.
 
 You can register as many “Credentials” as you like. E.g. I have 2x Yubikeys, a MacBook (TouchID) and an iPhone (FaceID) all registered, so I can login from all of my devices, and recover from any loss of an individual key. And the Authenticate button will work with any of them, without the user needing to pick which one.
 
