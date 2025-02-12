@@ -3,7 +3,6 @@ title: MailPace is now hosted inside the EU
 publishDate: 2022-04-28T22:10:03.284Z
 excerpt: We have migrated our data center from the UK to France
 category: Changelog
-
 ---
 
 We’re pleased to announce that all MailPace email and application data now resides inside the European Union.

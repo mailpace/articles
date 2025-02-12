@@ -1,5 +1,5 @@
 ---
-title: "Postmortem: Slow Sending"
+title: 'Postmortem: Slow Sending'
 publishDate: 2023-02-09T10:15:03.284Z
 excerpt: We saw some slow sending of a small subset of emails for about 16 hours, here's how we diagnosed and fixed the problem.
 category: Musings
@@ -25,7 +25,7 @@ For several hours we checked everything. Logs, metrics, code, database indexes, 
 
 ![event timeline of a worst case slow sending job](../../assets/images/blog/event-timeline-of-long-running-activejob.png)
 
-Note the extra long gap (1 min!) between `instantiation.active_record` and `sql.active_record`. Although it's not obvious here, looking at the code, this is where we call another service that actually sends the email. 
+Note the extra long gap (1 min!) between `instantiation.active_record` and `sql.active_record`. Although it's not obvious here, looking at the code, this is where we call another service that actually sends the email.
 
 This service does a couple of things, it takes the email, retrieves the latest DKIM key from another internal service, signs the email, then connects to the receiving SMTP server to send the email. It's understandable that this step can take a couple of seconds if the other SMTP server is being a bit slow, or there's a network issue, although it's usually under 500ms end to end.
 

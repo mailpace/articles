@@ -5,7 +5,7 @@ excerpt: A short guide to verifying payment provider Paddle.com webhooks and ale
 category: Guides
 ---
 
-When we first launched [MailPace](https://mailpace.com) we chose [Paddle](https://paddle.com) as our Payments Provider, primarily because they handle all sales taxes and payment infrastructure globally. One of the things that took longer than it should have was ensuring that alerts (webhooks) received from paddle.com actually come from Paddle. 
+When we first launched [MailPace](https://mailpace.com) we chose [Paddle](https://paddle.com) as our Payments Provider, primarily because they handle all sales taxes and payment infrastructure globally. One of the things that took longer than it should have was ensuring that alerts (webhooks) received from paddle.com actually come from Paddle.
 
 Luckily Paddle signs every request using [Public Key Cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography), and it works in a similar way to [DKIM](https://blog.mailpace.com/blog/whats-a-DKIM-record/). Paddle creates a short signature, using a Private Key specific to our Paddle account, and includes it with every webhook sent from their system, which we can verify on our end using the Public Key (see https://developer.paddle.com/webhook-reference/verifying-webhooks for more details). **Without this a nefarious actor might figure out your webhook endpoint and create a bunch of fake subscriptions/updates in your app.**
 
@@ -22,6 +22,7 @@ You'll need to ensure you have the following dependencies available in your `Gem
 # Code!
 
 #### **`app/controllers/api/paddle_controller.rb`**
+
 ```ruby
 # A standard Rails API endpoint definition
 class Api::PaddleController < ActionController::API

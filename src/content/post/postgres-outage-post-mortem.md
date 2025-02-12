@@ -9,7 +9,7 @@ Make sure you scroll to the end to hear about a bonus new project we're working 
 
 ## Introduction
 
-Transactional Email APIs require close to 100% uptime, and at MailPace we've been proud to have hit that in the past. However we recently had a brief (just over 2 hours) outage due to a database issue. 
+Transactional Email APIs require close to 100% uptime, and at MailPace we've been proud to have hit that in the past. However we recently had a brief (just over 2 hours) outage due to a database issue.
 
 Firstly, we'd to apologise for this issue, and in this blog post, we'll take you through the timeline of events during the outage, the root causes that led to it, and the measures taken to not only resolve the issue but also prevent similar occurrences in the future.
 
@@ -18,9 +18,11 @@ Firstly, we'd to apologise for this issue, and in this blog post, we'll take you
 All on Friday August 11th 2023, times in BST.
 
 ### 13:00 - Noticing a larger than usual database size
+
 We were doing some routine checks and observed that our database that stores sent emails, API details etc. was about 1.5x larger than it should have been, and was running at about 80% capacity.
 
 ### 13:05 - Finding out why
+
 We checked the database and uncovered some data that was older than our typical retention policy of 30 days, upon digging into the logs, a daily clean up cron job was not completing, and exiting with the ominous `killed` message.
 
 The cron job was a Rake (ruby) task that looked something like this:
@@ -36,35 +38,43 @@ end
 Basically, we go through each domain, and remove any data that's older than the retention policy date.
 
 ### 13:15 - Scaling Up the Cron Instance
+
 Returning `killed` usually means running out of memory. So we decided to increase the memory available to the cron job (from 1gb to 8gb), assuming it would run and clean up the old data.
 
 ### 13:36 Outage Begins
+
 This assumption was correct, but after running for a few minutes the job ended rather abruptly. From the code above, you may have already identified the issue.
 
 Immediately we started getting notifications that all database transactions were failing, across multiple services. Despite attempts to restart the database, the database was offline and would not come back up, telling us we were out of space.
 
-> This seemed impossible, how could a database which was only at 70% capacity have suddenly ran out of space when we were *deleting* data
+> This seemed impossible, how could a database which was only at 70% capacity have suddenly ran out of space when we were _deleting_ data
 
 More on this later
 
 ### 13:37 - Reaching Out for Support
+
 Our postgres database is actually a managed service, so we immediately contacted support at our upstream provider to identify what was going on
 
 ### 13:40 - Keeping Users in the Loop
+
 Simultaneously, we took to Twitter/Mastodon to notify users about the ongoing outage, and assumed our Status page would pick up the error and update automatically (unfortunately this did not happen)
 
 ### 13:45 - The Restoration Process
+
 While we waited for a response from our upstream provider we initiated our restoration procedure from a full outage and prepared an offsite backup from six hours prior, on a new database instance. This process takes about an hour end to end, and we have tested it in the past multiple times, so were confident it would work, however it would result in some data loss and continued outage
 
 ### 14:30 - Update from upstream provider
+
 As we about to migrate over to our new database, our upstream provider confirmed that they had been automatically notified of the issue at 99% storage filled, and were busy migrating us over to a larger database.
 
 Unfortunately due to a miscommunication on their end they had two support engineers working on the issue simultaneously (one from their automated check and one from our ticket) that slowed this migration down.
 
 ### 15:25 - Read only recovery
+
 During the database migration, the database was placed in read-only mode, which meant users could login, but not send emails. We initially thought we were fully back up at this point, but quickly realised our error and updated Twitter.
 
 ### 15:50 - Full Recovery
+
 The restoration process was successfully completed, and we were moved onto a larger database instance.
 
 At this point we were fully back up and running and emails were going out again.
@@ -93,7 +103,7 @@ In production our first step was to clean up the old data. To do this we manuall
 
 ### Fixing the root cause
 
-We then updated our daily clean up job to use `in_batches` (https://apidock.com/rails/ActiveRecord/Batches/BatchEnumerator/destroy_all): 
+We then updated our daily clean up job to use `in_batches` (https://apidock.com/rails/ActiveRecord/Batches/BatchEnumerator/destroy_all):
 
 ```ruby
 domain.outgoing_emails.where("created_at <= ?", org.retention_days.days.ago).in_batches(of: 50).destroy_all

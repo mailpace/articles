@@ -13,7 +13,6 @@ You can see an [example email here](../../assets/images/blog/example_email.txt).
 
 A simple email, but there's a lot of strange text! Let's simplify things a little, by breaking it down.
 
-
 ## Email Headers
 
 These are what you see at the start. They were first mentioned in [RFC733](https://www.rfc-editor.org/rfc/rfc733), back in 1977(!), but have since been revised a few times over e.g. in [RFC5322](https://www.rfc-editor.org/rfc/rfc5322), [RFC6854](https://www.rfc-editor.org/rfc/rfc6854) etc. who really knows what to believe nowadays.
@@ -68,9 +67,9 @@ This is where email gets interesting (finally!). This header tells us what's com
 
 There is also **multipart/related:** which you'll most likely see nested further down in the email. It ensures that all related parts (e.g. inline images) are bundled together.
 
-#### Then we have the `boundary` parameter 
+#### Then we have the `boundary` parameter
 
-For multipart emails, the `boundary` parameter, inside content type, defines a, usually random, unique string that separates the different parts of the message. Initially at the start of the email, but then repeated at the end of the email to close it off. This becomes very important 
+For multipart emails, the `boundary` parameter, inside content type, defines a, usually random, unique string that separates the different parts of the message. Initially at the start of the email, but then repeated at the end of the email to close it off. This becomes very important
 
 Finally, the **charset**, used to decode text parts. This is usually [UTF-8](https://en.wikipedia.org/wiki/UTF-8) but could be [ASCII](https://en.wikipedia.org/wiki/ASCII) or all kinds of exotic values.
 
@@ -85,6 +84,7 @@ The encoding method used to transfer the data:
 ## Where do email headers end and the actual email begins?
 
 The headers can be in any order, but the keen eyed among you may have noticed something in the email. There's a blank line between these two lines:
+
 ```
 Content-Transfer-Encoding: 7bit
 
@@ -107,13 +107,17 @@ multipart/mixed
     - text/html
   - image/png
 ```
+
 or just:
+
 ```
 multipart/alternative
   - text/plain
   - text/html
 ```
+
 or even:
+
 ```
 multipart/mixed
   - multipart/alternative

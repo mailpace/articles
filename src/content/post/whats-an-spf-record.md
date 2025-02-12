@@ -21,7 +21,7 @@ Fortunately there are some technologies (including SPF) that work together to he
 
 An SPF record says which mail servers are allowed to send email on your behalf. So when an email arrives from a particular server, the receiving server can look up the SPF record of the domain in the `From` field and validate that the server is allowed to send email for that specific Domain.
 
-If no match is found, then depending on the SPF policy in the record, the email will be marked as spam, outright rejected or have its spam score lowered. 
+If no match is found, then depending on the SPF policy in the record, the email will be marked as spam, outright rejected or have its spam score lowered.
 
 Without SPF there would be no way to check that the server that sent an email is actually allowed to send emails for the domain. By adding an SPF record you're telling the world that this particular IP, service or set of IPs is allowed to send email for that domain.
 
@@ -32,11 +32,12 @@ Here's a simple record:
 ```
 v=spf1 ip4:192.168.0.1 ~all
 ```
+
 Let's break it down:
 
 - `v=spf1` tells whoever is looking this up that this is an SPF record, and it's a Version 1 record. There's only one version at present, so this will always be the same for the forseeable future
 - `ip4:192.168.0.1` is an IP address that's allowed to send emails from this domain. You can list multiple IPs here by including a space between them, add ranges or even full domains
-- `~` is one of four *qualifiers* which tells the email client how to mark an email that matches the term to the right (in this case `all`). The options are pass (+), fail (-), softfail (~) or neutral (?) - using these allows you to do things like whitelist or blacklist addresses, or completely disable all emails from a given domain
+- `~` is one of four _qualifiers_ which tells the email client how to mark an email that matches the term to the right (in this case `all`). The options are pass (+), fail (-), softfail (~) or neutral (?) - using these allows you to do things like whitelist or blacklist addresses, or completely disable all emails from a given domain
 - `all` simply says match all emails
 
 Email clients will evaluate this record **from left to right**, looking for a match against the IP address that the email actually originated from. So if an email came from 192.168.0.1 it will match this record and pass SPF, but if it didn't arrive from there it will match `all` and be marked as a softfail (because of the `~`). Softfail means that the email should not be rejected for this reason alone, but it will be factored into the spam score.

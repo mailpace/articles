@@ -32,10 +32,10 @@ DATA
 (Email content and headers)
 
 250 OK
-QUIT 
+QUIT
 ```
 
-*The upper case entries are SMTP commands issued to the server, the numbers are status codes returned by the server.*
+_The upper case entries are SMTP commands issued to the server, the numbers are status codes returned by the server._
 
 If you follow along, we’re saying hello to the server (`EHLO`), acknowledging some protocol information, then asking the server to send an email from the `MAIL FROM` address, to the `RCPT TO` address. And then we provide the email itself, any attachments etc. Finally we say `QUIT` to end the session.
 
@@ -59,13 +59,13 @@ It doesn’t - instead **the CC and BCC recipients are defined only inside the e
 MAIL FROM: <alice@example.com>
 250 OK
 
-RCPT TO: <bob@example.com>, 
+RCPT TO: <bob@example.com>,
 250 OK
 
-RCPT TO: <carol@example.com>, 
+RCPT TO: <carol@example.com>,
 250 OK
 
-RCPT TO: <ted@example.com>, 
+RCPT TO: <ted@example.com>,
 250 OK
 ```
 
@@ -89,7 +89,7 @@ Carol is copied, but I’ve sent this to someone else and you’ll never know wh
 Alice
 ```
 
-*This header is crafted by the sender, and added inside the email (after the DATA command above).*
+_This header is crafted by the sender, and added inside the email (after the DATA command above)._
 
 As you can see we have `RCPT TO` commands for Bob, Carol, and Ted, but only Bob and Carol are listed in the email header. Implicitly, Ted is therefore a BCC recipient, and will receive the email without being mentioned anywhere in the email header itself.
 

@@ -1,7 +1,7 @@
 ---
 title: Free Transactional Email Templates
 publishDate: 2021-09-27T17:15:03.284Z
-excerpt: A set of free MIT licensed transactional email templates, built using TailwindCSS 
+excerpt: A set of free MIT licensed transactional email templates, built using TailwindCSS
 category: Guides
 ---
 
@@ -13,7 +13,6 @@ Here's a quick preview:
 
 ![Screenshot of Free HTML transactional email templates](../../assets/images/blog/screenshot.png)
 
-
 Check out the source code / setup instructions here:
 
 [https://github.com/mailpace/templates/](https://github.com/mailpace/templates/)
@@ -22,7 +21,7 @@ Check out the source code / setup instructions here:
 
 The templates are built using [Maizzle](https://maizzle.com/) and [Tailwind CSS](https://tailwindcss.com/).
 
-Maizzle is a really cool post-processor that allows you to use TailwindCSS to create emails. All styles are inlined and a bunch of best practices are followed to make it super easy to create high quality, good looking emails. 
+Maizzle is a really cool post-processor that allows you to use TailwindCSS to create emails. All styles are inlined and a bunch of best practices are followed to make it super easy to create high quality, good looking emails.
 
 Tailwind gives you utility-based CSS classes, which is a really neat way to build interfaces. We use Tailwind extensively across all of our apps and landing pages.
 

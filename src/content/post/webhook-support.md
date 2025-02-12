@@ -5,7 +5,7 @@ excerpt: We've added webhook support for emails
 category: Changelog
 ---
 
-We've added a long-requested feature to our service: 
+We've added a long-requested feature to our service:
 
 [Webhooks](https://en.wikipedia.org/wiki/Webhook)
 
@@ -17,7 +17,7 @@ Webhooks are typically sent as HTTP POST requests with a JSON body, and contain 
 
 # What webhooks do you support?
 
-All of the email [event lifecycle](https://docs.mailpace.com/guide/lifecycle/) statuses are supported. 
+All of the email [event lifecycle](https://docs.mailpace.com/guide/lifecycle/) statuses are supported.
 
 # How do I get setup?
 

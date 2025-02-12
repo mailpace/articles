@@ -11,7 +11,7 @@ There’s three ways to send an HTML email with an embedded image. Let’s find 
 
 1. Inline Attachment
 
-This works by attaching the image, then referencing the image in the email with an html image tag. 
+This works by attaching the image, then referencing the image in the email with an html image tag.
 
 Most email clients are smart enough to realise that the image...
 
@@ -31,11 +31,10 @@ Although the methods above can work on the web in general, the way almost all im
 
 CDN…
 
-
 ## So what’s the best way to embed an image in an email?
 
 Answer: **Via an externally hosted URL on a Content Delivery Network**
 
 It's almost always the best way, being cacheable, scalable and keeping your email sizes down, it allows users to load images optionally into the email and is usually the fastest to load in their inbox.
 
-Alternative answer: for smaller images, or where you don't have access to an external server / CDN, Base64 encoding them inline is your best bet for cross-client support and 
+Alternative answer: for smaller images, or where you don't have access to an external server / CDN, Base64 encoding them inline is your best bet for cross-client support and

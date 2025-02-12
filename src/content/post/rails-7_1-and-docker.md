@@ -1,7 +1,7 @@
 ---
-title: "Deploying Rails with Docker - killing our Pets"
+title: 'Deploying Rails with Docker - killing our Pets'
 publishDate: 2023-09-23T22:12:03.284Z
-excerpt: "What the new Dockerfile available in Rails 7.1 will mean for Rails deployments"
+excerpt: 'What the new Dockerfile available in Rails 7.1 will mean for Rails deployments'
 category: Guides
 ---
 
@@ -29,7 +29,7 @@ Containers usually only run one process at a time, and although you can run more
 
 A containerized Rails deployment will therefore mean several containers, linked together with Docker Compose or similar tech. You’ll have a container for [Sidekiq](https://github.com/sidekiq/sidekiq), one for [Redis](https://redis.io/), another for Rails itself, and then one for your load balancer, possibly one for your database, and for other infrastructure. It gets complex fast!
 
-Components like Sidekiq also need to include your source code in them (they run active jobs from your codebase, access rails models directly etc.). It can therefore be tempting to run Sidekiq inside the same container as the Rails app, which can save costs and seems simpler at first. For some folks, lining everything up all of this can be a bit annoying, versus just provisioning a VM with everything set up there. 
+Components like Sidekiq also need to include your source code in them (they run active jobs from your codebase, access rails models directly etc.). It can therefore be tempting to run Sidekiq inside the same container as the Rails app, which can save costs and seems simpler at first. For some folks, lining everything up all of this can be a bit annoying, versus just provisioning a VM with everything set up there.
 
 > This is probably why most articles on how to deploy a Rails app today cover deployments on PaaS providers (Heroku, Fly.io etc.) or onto pet-like VMs, and not containers
 
@@ -41,18 +41,18 @@ When you create a new Rails app from 7.1 onwards you’ll see three new files:
 
 - `Dockerfile` - which is the main container definition for the app, and actually runs the app
 - `bin/docker-entrypoint` - a shell script used by the Dockerfile to run database migrations with `rails db:prepare`
-- ``.dockerignore`` - used to avoid including temporary and unnecessary files in the container
+- `.dockerignore` - used to avoid including temporary and unnecessary files in the container
 
 The templates that generate these files are here: [github.com/rails/rails/railties/lib/rails/generators/rails/app/templates](https://github.com/rails/rails/tree/ef6c3fb4bf43119385ad0dd04b42eb5cd0d9fb93/railties/lib/rails/generators/rails/app/templates)
 
-Here’s an example from a fresh Rails 7.1 App, from the `7.1.0.beta1` release. Thanks to the code comments this is pretty self explanatory, but in summary this will: 
+Here’s an example from a fresh Rails 7.1 App, from the `7.1.0.beta1` release. Thanks to the code comments this is pretty self explanatory, but in summary this will:
 
 1. Get the `slim` Ruby image from Docker Hub
 2. Configure environment variables for production
 3. Set up a build stage to install packages, build gems, precompile code, and assets.
 4. Copy the application code over to the container
-4. Create a final production image with additional packages, copying built artifacts, and configuring a non-root user to run the app
-5. Execute the `ENTRYPOINT` bash script for database preparation and start the Rails server on port 3000 via `CMD`
+5. Create a final production image with additional packages, copying built artifacts, and configuring a non-root user to run the app
+6. Execute the `ENTRYPOINT` bash script for database preparation and start the Rails server on port 3000 via `CMD`
 
 > Note `ENTRYPOINT` is always run, but `CMD` is only run if no other command is specified at runtime - i.e. you can easily override `CMD` by passing a command to the container at runtime`
 
@@ -136,9 +136,9 @@ But this is just the start - to run in production there's much more to consider 
 
 If you're a Rails developer you're probably focused on building a great product, so you don't want to spend your time learning DevOps and setting up your infrastructure - which your users don't care about, ever.
 
-The good news is that Basecamp have released [Kamal](https://github.com/basecamp/kamal) (formerly called MRSK), which  simplifies running Rails apps on your own hardware, or on IaaS providers like Hetzner and Digital Ocean. It uses containers and includes things like zero downtime deploys via blue/green deployments. You'll still want a Load Balancer + SSL Termination in front, so you'll need to set that up separately or use a Cloud Provider with it built in already.
+The good news is that Basecamp have released [Kamal](https://github.com/basecamp/kamal) (formerly called MRSK), which simplifies running Rails apps on your own hardware, or on IaaS providers like Hetzner and Digital Ocean. It uses containers and includes things like zero downtime deploys via blue/green deployments. You'll still want a Load Balancer + SSL Termination in front, so you'll need to set that up separately or use a Cloud Provider with it built in already.
 
-A more turnkey PaaS like [Fly.io](https://fly.io) can get you up and running with Rails very quickly too, and is kind of a spiritual successor to Heroku. 
+A more turnkey PaaS like [Fly.io](https://fly.io) can get you up and running with Rails very quickly too, and is kind of a spiritual successor to Heroku.
 
 There are also cool options like [HatchBox](https://www.hatchbox.io/) that can use any Ubuntu machine to get a Rails app up running quickly, with everything you typically need baked in.
 

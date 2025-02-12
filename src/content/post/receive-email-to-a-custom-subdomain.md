@@ -1,7 +1,7 @@
 ---
 title: Custom Subdomains for Inbound Emails
 publishDate: 2022-06-09T16:15:03.284Z
-excerpt: We've launched support for custom subdomains on inbound emails 
+excerpt: We've launched support for custom subdomains on inbound emails
 category: Changelog
 ---
 

@@ -13,7 +13,7 @@ Rather than bring in a new static site framework, we wanted something we could e
 
 ## Enter HTML Modules & HTML Imports
 
-HTML Modules & Imports are similar specifications that allow splitting up web pages into different HTML components to improve reusability. There are some competing opinions on how these should work and Chromium already has a implementation called HTML Imports. 
+HTML Modules & Imports are similar specifications that allow splitting up web pages into different HTML components to improve reusability. There are some competing opinions on how these should work and Chromium already has a implementation called HTML Imports.
 
 The W3C have a great explainer here: https://github.com/WICG/webcomponents/blob/gh-pages/proposals/html-modules-explainer.md - but essentially it's a standard that should work well in the same way ES6 modules work well in JavaScript. The alternative to HTML Modules/Imports is to use an HTML templating language - there's lots to choose from, but we felt they were more geared towards injecting data into HTML files, than really modularizing things.
 
@@ -31,7 +31,7 @@ To setup our site we change our pages into a simple HTML structure that combines
 
 ```html
 <module href="/components/layout.html">
-    <module href="/content/content.html"></module>
+  <module href="/content/content.html"></module>
 </module>
 ```
 
@@ -40,12 +40,12 @@ Where layout.html contains our basic layout and pulls in a Head section, Nav bar
 ```html
 <!DOCTYPE html>
 <html lang="en">
-	<module href="/components/head.html"></module>
-    <body>
-        <module href="/components/nav.html"></module>
-        <content></content>
-        <module href="/components/footer.html"></module>
-    </body>
+  <module href="/components/head.html"></module>
+  <body>
+    <module href="/components/nav.html"></module>
+    <content></content>
+    <module href="/components/footer.html"></module>
+  </body>
 </html>
 ```
 
@@ -58,12 +58,14 @@ The end result that our compilation step will spit out is a combination of all o
 ```html
 <!DOCTYPE html>
 <html lang="en">
-    <head>Head</head>
-    <body>
-        <nav>Nav here</nav>
-        <div>Custom page content here</div>
-        <div>Footer here</div>
-    </body>
+  <head>
+    Head
+  </head>
+  <body>
+    <nav>Nav here</nav>
+    <div>Custom page content here</div>
+    <div>Footer here</div>
+  </body>
 </html>
 ```
 
@@ -73,7 +75,7 @@ We already use NPM to include TailwindCSS and host a simple development server w
 
 Install PostHTML Modules and onchange (onchange is for watching and rebuilding the pages when developing):
 
- `npm i -D posthtml-modules onchange`
+`npm i -D posthtml-modules onchange`
 
 Then create `posthtml.json` in the root of our project:
 
@@ -82,10 +84,10 @@ Then create `posthtml.json` in the root of our project:
   "input": "html/*.html",
   "output": "public",
   "plugins": {
-      "posthtml-modules": {
-          "root": "./html",
-          "initial": true
-      }
+    "posthtml-modules": {
+      "root": "./html",
+      "initial": true
+    }
   }
 }
 ```

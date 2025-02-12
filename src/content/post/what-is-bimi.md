@@ -33,15 +33,13 @@ Here's how you can do it with MailPace (or another provider):
 
 - Ensure that you have enabled [DMARC support](https://docs.mailpace.com/guide/verification#advanced-verification)
 - Set your DMARC policy in your DNS record to `p=reject` or `p=quarantine`. If you are also using the `pct` variable, ensure it is set to `100` or omitted
-- Create a square, SVG logo, that is less than 32kb and has a solid background colour, and  upload the SVG logo to a public location
+- Create a square, SVG logo, that is less than 32kb and has a solid background colour, and upload the SVG logo to a public location
 - Create a new TXT DNS record for your domain with the following details, where the `l` URL is the location of your SVG logo and the `a` URL is the location of your VMC certificate (if you have one):
   - Name `default._bimi`
-  - Contents: 
+  - Contents:
   ```
   v=BIMI1; l=https://example.com/images/bimi-logo.svg a=https://example.com/VMC-certificate.pem;
   ```
   Note that the a variable should be omitted if you do not have a VMC certificate
 
 That's it. Once your DNS records are updated, mailboxes that support BIMI should start showing your logo.
-
-

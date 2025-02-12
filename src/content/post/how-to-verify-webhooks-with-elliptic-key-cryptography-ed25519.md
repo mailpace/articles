@@ -51,13 +51,16 @@ There are a couple of specific things here that we do:
 Here are some snippets to illustrate how we do this in Ruby:
 
 **Creating the signing key**
+
 ```ruby
 def create_webhook_key
  key = Ed25519::SigningKey.generate.to_bytes
  self.webhook_signing_key = Base64.strict_encode64(key)
 end
 ```
+
 **Signing the body**
+
 ```ruby
 def sign_body(body, key)
  signature_key_bytes = Base64.strict_decode64(key)
@@ -68,6 +71,7 @@ end
 ```
 
 **Attaching it to the request Headers**
+
 ```ruby
 headers: {
   "User-Agent" => "mailpace_webhooks/1.0",

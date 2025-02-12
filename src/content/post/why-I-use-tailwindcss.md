@@ -10,7 +10,12 @@ Many moons ago, when I first started using CSS, it was common to use inline styl
 ```html
 <h1 style="margin: 0; font-size: 36px; font-weight: 500; line-height: 1.1;">This is a nice header</h1>
 <p style="margin: 0 0 10px; font-size: 14px;">This is a nice paragraph</p>
-<a style="color: #fff; background-color: #337ab7; display: inline-block; margin-bottom: 0; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer;padding: 6px 12px; font-size: 14px; line-height: 1.42857143; border-radius: 4px;" href="#" role="button">A blue button</a>
+<a
+  style="color: #fff; background-color: #337ab7; display: inline-block; margin-bottom: 0; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer;padding: 6px 12px; font-size: 14px; line-height: 1.42857143; border-radius: 4px;"
+  href="#"
+  role="button"
+  >A blue button</a
+>
 ```
 
 All the elements are individually styled, which is convenient for minor changes, but quickly becomes hard to maintain, the styles are long, and it's not very DRY (Don't Repeat Yourself). But it did work on MySpace.
@@ -18,41 +23,44 @@ All the elements are individually styled, which is convenient for minor changes,
 Instead we all learnt to do CSS with a separate `.css` file, using .class and #id selectors to select specific elements to apply our CSS to. Like this:
 
 #### index.html
+
 ```html
 <head>
-    <link href="style.css" rel="stylesheet">    
+  <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-    <h1 id="my-very-own-header">This is a nice header</h1>
-    <p class="paragraphs-on-app-screen-x">This is a nice paragraph</p>
-    <a class="my-blue-buttons">A Blue Button</a>
+  <h1 id="my-very-own-header">This is a nice header</h1>
+  <p class="paragraphs-on-app-screen-x">This is a nice paragraph</p>
+  <a class="my-blue-buttons">A Blue Button</a>
 </body>
 ```
+
 #### style.css
+
 ```css
 #my-very-own-header {
-    margin: 0;
-    font-size: 36px;
-    font-weight: 500;
-    line-height: 1.1;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.1;
 }
 .paragraphs-on-app-screen-x {
-    margin: 0 0 10px;
-    font-size: 14px;
+  margin: 0 0 10px;
+  font-size: 14px;
 }
 .my-blue-buttons {
-    color: #fff;
-    background-color: #337ab7;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
+  color: #fff;
+  background-color: #337ab7;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
 }
 ```
 
@@ -68,7 +76,7 @@ In 2011 Twitter released [Bootstrap](https://getbootstrap.com/). We could all fo
 
 And like magic a nice looking page, with sensible defaults appeared on screen. Everyone's website looked the same, but who cares - No CSS, and No Naming Things!
 
-Meanwhile we started to realise that CSS had some intrinsic limits, and we began using pre-processors like SCSS, Less & Sass to make CSS usable. This tied in nicely with the evolution of Javascript libraries requiring transpilation and a general standardization of having some kind of build process for web applications. 
+Meanwhile we started to realise that CSS had some intrinsic limits, and we began using pre-processors like SCSS, Less & Sass to make CSS usable. This tied in nicely with the evolution of Javascript libraries requiring transpilation and a general standardization of having some kind of build process for web applications.
 
 We eventually came up with ways to "import" our CSS into our Javascript world of React, Vue et al, in these pipelines, and if we're building a Javascript SPA, we can now easily write CSS inside the JS application code, scoped locally to the current module we're working on with all the goodies our pre-processors provided. There are some cool examples [here](https://cssinjs.org/) and [here](https://github.com/css-modules/css-modules).
 
@@ -95,7 +103,7 @@ For example, when I:
 
 - Pick a font size, I choose between two finite values: `text-sm` and `text-xl`, not an infinite `font-size` scale, and even worse between `em` and `px` units
 - Choose a a shade of blue, I start with `text-blue-500` and change to `text-blue-600` to darken or `text-blue-400` to lighten. I don't deal with Hex, RGB etc. that require switching context to another tool/concept
-- Round an image, I just add `rounded-full`,  I don't need to remember that `border-radius: 50%` is the magic CSS way to do this
+- Round an image, I just add `rounded-full`, I don't need to remember that `border-radius: 50%` is the magic CSS way to do this
 
 This means **I now rarely name elements**. I don't have to build a semantic naming structure inside my CSS (which usually evolves into a site/brand specific framework anyway), and my HTML contains everything I need.
 

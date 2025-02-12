@@ -15,7 +15,7 @@ Email 2FA, with One Time Passcodes would make sense given we are a transactional
 
 We did not consider push-based 2FA at all, these require proprietary services and 3rd party apps to work, and the user experience is clunky.
 
-As we read more and more about these options, WebAuthn started to pop up. We recalled reading about this standard a couple of years ago, we remembered our rarely used FIDO Yubikeys, (used even less now MacBooks only come with USB-C ports) and reminded ourselves that we could sign git commits, do password-less logins and 2FA with these magic devices. You plug them in when logging in, and with some cryptographic magic you’re authenticated, and they can’t be phished, hacked or otherwise broken. Amazing. 
+As we read more and more about these options, WebAuthn started to pop up. We recalled reading about this standard a couple of years ago, we remembered our rarely used FIDO Yubikeys, (used even less now MacBooks only come with USB-C ports) and reminded ourselves that we could sign git commits, do password-less logins and 2FA with these magic devices. You plug them in when logging in, and with some cryptographic magic you’re authenticated, and they can’t be phished, hacked or otherwise broken. Amazing.
 
 > But hardly anyone has hardware tokens, right? And very few services support them?
 

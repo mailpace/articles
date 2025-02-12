@@ -79,6 +79,7 @@ KNOWN_SPAM_STRING {
     regexp = true;
 }
 ```
+
 Breaking this example down:
 
 - `KNOWN_SPAM_STRING` is the symbol name, this can be anything you like, and you will see this name when you see a report / response from Rspamd

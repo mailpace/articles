@@ -5,7 +5,7 @@ excerpt: A guide to Reverse DNS (rDNS) and PTR records
 category: Guides
 ---
 
-## Background 
+## Background
 
 [DNS (Domain Name System)](https://en.wikipedia.org/wiki/DNS) is a system that provides a key-value data store for domain information. Its primary use is to link a domain to an IP address, although it is often used for other records like [SPF](https://blog.mailpace.com/blog/whats-an-spf-record/) and [DKIM](https://blog.mailpace.com/blog/whats-a-DKIM-record/)
 
@@ -29,7 +29,7 @@ But there are other situations where rDNS is useful, such as tracking down a hac
 
 Reverse DNS records are maintained as PTR (short for Pointer) records under the [Address and Routing Parameter Area (ARPA) top level domain](https://www.iana.org/domains/arpa). Most people have never heard this domain, but it is one of the oldest and most important pieces of infrastructure that powers the internet. The `.arpa` TLD is used for domain management of technical network infrastructure across the internet, and was originally introduced in January 1985.
 
-It was intended to be used to transition from [ARPANET](https://en.wikipedia.org/wiki/ARPANET) (a precursor to the Internet), but remains to date and will probably be there indefinitely. 
+It was intended to be used to transition from [ARPANET](https://en.wikipedia.org/wiki/ARPANET) (a precursor to the Internet), but remains to date and will probably be there indefinitely.
 
 There are two subdomains that are used for rDNS records on `.arpa`:
 
@@ -40,7 +40,7 @@ The name of a PTR rDNS record looks like this:
 
 `<REVERSED IP ADDRESS>.<SUB_DOMAIN>.arpa`
 
-Where IP Address is your IPv4 or IPv6 address **in reverse** and Sub Domain is the IPv4 or IPv6 subdomain above. 
+Where IP Address is your IPv4 or IPv6 address **in reverse** and Sub Domain is the IPv4 or IPv6 subdomain above.
 
 When we run an rDNS lookup we're querying the `.arpa` domain for a PTR record that matches the above. The domain that the IP address maps to is also stored in the zone file alongside this and is returned in the lookup.
 
@@ -60,11 +60,11 @@ $ dig -x 193.33.178.182 +noall +answer
 - `+noall` hides all of the response
 - `+answer` shows the answer itself
 
-The keen-eyed among you will see that the IP address above is backwards, so what we actually have in our PTR record is  `182.178.33.193` (which really means `193.33.178.182`) points to `mailer.mailpace.com`. This means that when an email comes from this IP address, the rDNS query made by most spam filters will resolve to `mailer.mailpace.com`. We set the hostname of our `ReplyTo` header in all our outgoing emails to this domain, so that these email servers can match up the email hostname to our IP using this this mechanism.
+The keen-eyed among you will see that the IP address above is backwards, so what we actually have in our PTR record is `182.178.33.193` (which really means `193.33.178.182`) points to `mailer.mailpace.com`. This means that when an email comes from this IP address, the rDNS query made by most spam filters will resolve to `mailer.mailpace.com`. We set the hostname of our `ReplyTo` header in all our outgoing emails to this domain, so that these email servers can match up the email hostname to our IP using this this mechanism.
 
 ## How to set an rDNS record
 
-For most people, the answer is to **contact to your web host or server provider**. This is because you need to have IP authority to set an rDNS record. Most web hosts will have a way to set this for you through their UI or support team. 
+For most people, the answer is to **contact to your web host or server provider**. This is because you need to have IP authority to set an rDNS record. Most web hosts will have a way to set this for you through their UI or support team.
 
 However if you’re lucky enough to have authority over your IPs you can set these yourself. To do this you need to create the reverse DNS zone on the authoritative DNS nameserver for the IP address of your server. You can find out what your authoritative name server is using `dig`.
 
@@ -74,7 +74,7 @@ Create and save a PTR record using the format above ( remember to reverse the IP
 
 And that's it!
 
-## Further Reading 
+## Further Reading
 
 https://datatracker.ietf.org/doc/html/rfc5855
 https://en.wikipedia.org/wiki/Reverse_DNS_lookup

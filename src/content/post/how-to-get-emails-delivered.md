@@ -17,16 +17,15 @@ Here’s what we do to help stop this:
 
 ### Spam filter on all outgoing emails
 
-We use [Rspamd](https://rspamd.com/) to filter every email sent through MailPace. Our filters are aggressive and we use the built in Neural network module to learn from spam we see in the wild. 
+We use [Rspamd](https://rspamd.com/) to filter every email sent through MailPace. Our filters are aggressive and we use the built in Neural network module to learn from spam we see in the wild.
 
-Rspamd can be confusing to configure, if you're struggling, we've previously written about [how to set up Rspamd](https://blog.mailpace.com/blog/how-to-catch-spam-with-rspamd/
-).
+Rspamd can be confusing to configure, if you're struggling, we've previously written about [how to set up Rspamd](https://blog.mailpace.com/blog/how-to-catch-spam-with-rspamd/).
 
 ### Whitelisted file extension attachments
 
 We support attachments, but we only support a subset of file extensions ([details in our docs](https://docs.mailpace.com/reference/send/#attachments)), and virus scan them before sending. While not perfect this significantly reduces the risk of dangerous files being sent through our service.
 
-### Proof of domain ownership 
+### Proof of domain ownership
 
 Every domain must be verified using [DKIM](https://blog.mailpace.com/blog/whats-a-DKIM-record/). This is both to prove ownership of a domain, but also because most email servers will check DKIM signatures before delivery regardless.
 
@@ -34,11 +33,11 @@ Every domain must be verified using [DKIM](https://blog.mailpace.com/blog/whats-
 
 Beware of email providers with free plans. Spammers still bring fraudulent credit cards to the table, but it's much less common.
 
-### Manual review 
+### Manual review
 
 We manually review all new accounts, and actively disable any we think could be potential spam accounts. When someone signs up with `support@onmicrosoft.com`, you know something's up. We will only reenable these accounts after discussing directly with the customer.
 
-## 2. Be a good citizen 
+## 2. Be a good citizen
 
 Spammers rarely do all the things that "real" senders do. There are a bunch of things your email server needs to do to fit in with the crowd. Not following these written and unwritten rules will hurt your delivery:
 
@@ -64,7 +63,7 @@ You should not keep trying to send to these hard-bounced addresses. This can hap
 
 ### Handle bounce reports
 
-Sometimes an email will be accepted, but the server will later find out it cannot deliver it. The server will then send a bounce response via email to the `ReplyTo` address. You need to ensure you're able to pick up these bounce reports, parse them and take appropriate action on behalf of your users. 
+Sometimes an email will be accepted, but the server will later find out it cannot deliver it. The server will then send a bounce response via email to the `ReplyTo` address. You need to ensure you're able to pick up these bounce reports, parse them and take appropriate action on behalf of your users.
 
 These get mixed up with out of office auto-replies, which can be a real pain to work with.
 

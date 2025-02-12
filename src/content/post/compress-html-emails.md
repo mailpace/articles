@@ -24,6 +24,7 @@ We found that although #2 was faster in our tests, being written in Rust, #1 was
 We wrote a simple module, and added some unit tests to make sure it was behaving as expected:
 
 `minify.ts`
+
 ```typescript
 import { minify, Options } from 'html-minifier-terser';
 
@@ -44,6 +45,7 @@ export default async function (html: string): Promise<string> {
 ```
 
 `minify.spec.ts`
+
 ```typescript
 import test from 'ava';
 
@@ -62,17 +64,11 @@ test('handles invalid html', async (t) => {
 
   // Unquoted attribute values
   const invalidHtml2 = '<a href=/link>Unquoted Attribute</a>';
-  t.deepEqual(
-    await minify(invalidHtml2),
-    '<a href="/link">Unquoted Attribute</a>',
-  );
+  t.deepEqual(await minify(invalidHtml2), '<a href="/link">Unquoted Attribute</a>');
 
   // Invalid characters
   const invalidHtml3 = '<div>&lt;div&gt;Invalid&lt;/div&gt;</div>';
-  t.deepEqual(
-    await minify(invalidHtml3),
-    '<div>&lt;div&gt;Invalid&lt;/div&gt;</div>',
-  );
+  t.deepEqual(await minify(invalidHtml3), '<div>&lt;div&gt;Invalid&lt;/div&gt;</div>');
 
   // Remove comments
   const invalidHtml4 = '<!-- Comment --> <p>Text</p>';

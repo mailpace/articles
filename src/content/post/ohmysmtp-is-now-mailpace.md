@@ -13,7 +13,7 @@ The final straw came when someone assumed we were a toilet paper company.
 
 ## What does this mean for you?
 
-The good news is that **nothing changes for applications using OhMySMTP**. 
+The good news is that **nothing changes for applications using OhMySMTP**.
 
 All API routes and SMTP servers will remain the same. Existing libraries will continue to be available and work indefinitely.
 

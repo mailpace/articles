@@ -11,11 +11,11 @@ At MailPace we have two services, both written in Typescript that accept emails 
 
 To secure the connection between the sending server and our server, we need to have a TLS certificate on each of our servers. This will allow clients to negotiate an encrypted connection, either over TLS from the outset or via a STARTTLS upgrade from an insecure connection.
 
-Normally, one would set up a reverse proxy with inbuilt cert renewal, or a cloud-based WAF type service to handle TLS connections. However, in the case of SMTP, we need to negotiate the TLS connection with our SMTP server directly to handle things like STARTTLS properly. Unlike HTTP, there aren't many (any?) SMTP-compatible reverse proxies that will handle this kind of exchange for us. 
+Normally, one would set up a reverse proxy with inbuilt cert renewal, or a cloud-based WAF type service to handle TLS connections. However, in the case of SMTP, we need to negotiate the TLS connection with our SMTP server directly to handle things like STARTTLS properly. Unlike HTTP, there aren't many (any?) SMTP-compatible reverse proxies that will handle this kind of exchange for us.
 
 So we need a way to refresh our certificates on each of our node apps, one by one.
 
-# We ❤️ Containers 
+# We ❤️ Containers
 
 We originally started MailPace with mutable servers. That is, we had Ubuntu servers with our apps installed by a set of bash scripts. Over time, this became increasingly difficult to manage and track, so we switched over to Docker based infrastructure and are leveraging cloud based IaaS providers (specifically https://fly.io and https://clever-cloud.com). The nice thing about these services is that you just provide a dockerfile, and they handle everything else, including scaling.
 
@@ -34,8 +34,8 @@ The cert files were 2 .pem files, which we imported into our SMTP server like th
 	...
 }
 ```
-Apart from storing private keys in source control, this method was fraught with issues, namely, **what if we forget to update the certs?**
 
+Apart from storing private keys in source control, this method was fraught with issues, namely, **what if we forget to update the certs?**
 
 # Full automation
 
@@ -156,7 +156,7 @@ curl "https://app.mailpace.com/api/v1/send" \
         from="support@mailpace.com" \
         to="support@mailpace.com" \
         subject="Inbound & SMTP Certs Updated. Logs." \
-        textbody="$output")" 
+        textbody="$output")"
 ```
 
 # Step 3: Deploy and schedule

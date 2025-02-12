@@ -21,7 +21,7 @@ This is what you hit when you send an email with [app.mailpace.com/api/v1/send](
 
 We use [Rails 7](https://rubyonrails.org/), with [Turbo](https://github.com/hotwired/turbo-rails) for the front end JavaScript / interactive parts. Rails is by far the simplest way to get a CRUD app up and running, and has proven itself well.
 
-Yes we could rewrite our API in Rust and be a bit faster (and we might do that in future). But RoR is so easy to add new features,  Ruby is a complete joy to write code in, and both Ruby and Rails are getting a lot of updates all the time (but not too many changes, looking at you JavaScript ecosystem).
+Yes we could rewrite our API in Rust and be a bit faster (and we might do that in future). But RoR is so easy to add new features, Ruby is a complete joy to write code in, and both Ruby and Rails are getting a lot of updates all the time (but not too many changes, looking at you JavaScript ecosystem).
 
 ### Database: Postgres
 
@@ -89,7 +89,7 @@ We have [Algolia](https://www.algolia.com/) for search baked in, straightforward
 
 ### MailPace.com - HTML Modules + TailwindCSS
 
-This is probably the simplest part - we started with HTML, with a sprinkle of JavaScript. Then added [HTML Modules using npm scripts](https://blog.mailpace.com/blog/using-html-modules/ "smartCard-inline") and added TailwindCSS. It’s perfect and easy to maintain.
+This is probably the simplest part - we started with HTML, with a sprinkle of JavaScript. Then added [HTML Modules using npm scripts](https://blog.mailpace.com/blog/using-html-modules/ 'smartCard-inline') and added TailwindCSS. It’s perfect and easy to maintain.
 
 ### Hosting: Netlify
 
@@ -97,7 +97,7 @@ We use [Netlify](http://netlify.com) to host these static sites. Very easy to se
 
 ## Automation
 
-We have a separate VM for running [Cron](https://en.wikipedia.org/wiki/Cron)  jobs. We use it to also send out emails to ourselves regularly using the greatest transactional email API available, our very own [mailpace.com](http://mailpace.com), and we previously wrote about [why sending emails is a great way to monitor your app](https://dev.to/ehlo_250/the-easiest-way-to-monitor-your-app-in-production-is-email-1c4h).
+We have a separate VM for running [Cron](https://en.wikipedia.org/wiki/Cron) jobs. We use it to also send out emails to ourselves regularly using the greatest transactional email API available, our very own [mailpace.com](http://mailpace.com), and we previously wrote about [why sending emails is a great way to monitor your app](https://dev.to/ehlo_250/the-easiest-way-to-monitor-your-app-in-production-is-email-1c4h).
 
 We automate our SMTP cert renewal (surprisingly complex) with fly.io machines, here’s [how we did that](https://blog.mailpace.com/blog/fly-machines-automating-certificate-upgrades-for-smtp/).
 
@@ -109,12 +109,12 @@ We automate our SMTP cert renewal (surprisingly complex) with fly.io machines, h
 - [VSCode](https://code.visualstudio.com/) (with Github Copilot) for writing code
 - [Masto.host](https://masto.host) for Mastodon (Social media) - essential given Twitter's current state
 - [Letsencrypt](https://letsencrypt.org/) for SSL Certificates
-- [Cloudflare](http://Cloudflare.com "‌") for DNS and CDN on static sites
+- [Cloudflare](http://Cloudflare.com '‌') for DNS and CDN on static sites
 - [Github](http://github.com) for git hosting
 - [Trello](http://trello.com) for task management
-- [Tutanota](https://tutanota.com) and [Hey](https://hey.com) for  "normal" emails
+- [Tutanota](https://tutanota.com) and [Hey](https://hey.com) for "normal" emails
 
----- 
+---
 
 Phew! I think that’s everything. I guess it's not as boring/simple as I thought before I started writing this!
 

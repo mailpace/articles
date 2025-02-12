@@ -1,7 +1,7 @@
 ---
 title: Adding HTML Email Previews to our UI
 publishDate: 2024-06-03T22:15:03.284Z
-excerpt: How we've added HTML Email Previews to our UI 
+excerpt: How we've added HTML Email Previews to our UI
 category: Changelog
 ---
 
@@ -20,6 +20,7 @@ We now use Turbo Frames to load the email details, and sprinkling of Stimulus Ja
 > This means no more Jquery in our app, anywhere!
 
 The email HTML goes inside two places:
+
 - A `<div>` to show the raw HTML, which we [syntax highlight with Prism](../adding-code-syntax-highlighting/)
 - An `<iframe>` which renders the HTML
 

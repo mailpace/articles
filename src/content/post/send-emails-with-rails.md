@@ -9,7 +9,7 @@ We've just launched our **first application framework plugin for MailPace.com**
 
 You can now **send emails from a Ruby-on-Rails app with MailPace.com!**
 
-The gem is available on rubygems here: https://rubygems.org/gems/mailpace-rails 
+The gem is available on rubygems here: https://rubygems.org/gems/mailpace-rails
 
 and the setup instructions and source code are here: https://github.com/mailpace/mailpace-rails
 

@@ -33,7 +33,6 @@ Next, initialize a new Node.js project with the following command:
 
 `npm init -y`
 
-
 ## Step 2: Installing Dependencies
 
 For this project, we will be using the following dependencies:
@@ -45,7 +44,6 @@ For this project, we will be using the following dependencies:
 Install these dependencies using npm:
 
 `npm install axios express redis`
-
 
 ## Step 3: Creating a Basic Express Server
 

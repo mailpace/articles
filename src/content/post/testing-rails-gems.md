@@ -17,7 +17,7 @@ But our tests were only running against Rails 6.1. No matter how well written, t
 
 Our Rails Gem is structured with a dummy rails project embedded inside it that our tests run against. When we run our tests it loads up this project, sets MailPace as the default delivery method and runs our tests in the context of the dummy rails app.
 
-To test against different versions of Rails, we need an easy way to change this dummy app's version of Rails, and then re-run our tests against it. 
+To test against different versions of Rails, we need an easy way to change this dummy app's version of Rails, and then re-run our tests against it.
 
 > If we'd done this for Rails 5.x earlier, we would have caught the bugs above! 🤦
 
@@ -35,20 +35,21 @@ Bingo! **We just need to modify this version on each re-run of the full test sui
 
 We use [Circle CI](https://circleci.com/) for testing across our projects at MailPace to ensure our tests are passing on every push and give a public view on our open source components. For our Node.js library we use different Node.js versioned Docker images for each job, however in Rails the Rails version is defined by the project in the Gemfile, which means we can't use a different Docker image to switch Rails version.
 
-# Environment Variables to the Rescue 
+# Environment Variables to the Rescue
 
 With CircleCI you can specify environment variables in the config, like this:
 
 ```yaml
 environment:
-  RAILS_TEST_VERSION: "5.2.5"
+  RAILS_TEST_VERSION: '5.2.5'
 ```
 
 So we created several CircleCI jobs, each with a different `RAILS_TEST_VERSION` to test against.
 
 Then we use some string interpolation to read from this variable (or default to version 6.1.3.1) when installing Rails for the Dummy project:
 
-In `mailpace-rails.gemspec`: 
+In `mailpace-rails.gemspec`:
+
 ```ruby
 spec.add_development_dependency "rails", "#{ENV['RAILS_TEST_VERSION'] || '>=6.1.3.1'}"
 

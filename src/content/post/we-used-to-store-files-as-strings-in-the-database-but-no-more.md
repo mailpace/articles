@@ -31,11 +31,11 @@ The obvious answer is object or file system storage, **instead of putting the at
 2. Storing the attachment on a separate system
 3. Re-encoding the attachment when we send it (and we might have to retry sending it up to 15 times over several days)
 
-This introduces a new dependency on a file store in real time , and it will probably be slow! And remember, we are called Mail**Pace**. So we needed a better solution 
+This introduces a new dependency on a file store in real time , and it will probably be slow! And remember, we are called Mail**Pace**. So we needed a better solution
 
 ## ActiveJob to the rescue
 
-We already had the data in the API request, and in Postgres, and this was plenty fast enough, so instead of changing the way emails are sent, why not move the attachments out of the database *after* the email is delivered? 
+We already had the data in the API request, and in Postgres, and this was plenty fast enough, so instead of changing the way emails are sent, why not move the attachments out of the database _after_ the email is delivered?
 
 We can do this in an async background process, and this means we save the space, but keep the base64 string around for long enough to get the email delivered.
 
@@ -122,7 +122,7 @@ Finally, we write some unit tests, add the right credentials for the bucket, add
 
 ## What happened
 
-Immediately after deployment we started seeing attachments shifting over to our bucket. Within an hour we had saved 500mb of database storage, and our database stopped growing in size almost immediately. 
+Immediately after deployment we started seeing attachments shifting over to our bucket. Within an hour we had saved 500mb of database storage, and our database stopped growing in size almost immediately.
 
 All this with no impact on our sending speed, and minimal changes to our current infrastructure.
 

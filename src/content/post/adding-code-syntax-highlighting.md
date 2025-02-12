@@ -19,18 +19,18 @@ Or if you're just doing this in hand-rolled HTML site you can simply visit https
 
 ```html
 <head>
-    ...
-    <link rel="stylesheet" href="prism.css">
+  ...
+  <link rel="stylesheet" href="prism.css" />
 </head>
 <body>
-    ...
-    <script src="prism.js"></script>
+  ...
+  <script src="prism.js"></script>
 </body>
 ```
 
-## Laying out the code 
+## Laying out the code
 
-Once you have your `prism.js` and `prism.css` code included or bundled into the browser, you just need to include a code block with a class tag defining the language. 
+Once you have your `prism.js` and `prism.css` code included or bundled into the browser, you just need to include a code block with a class tag defining the language.
 
 Here's a simple example from our landing page as it would appear in your HTML editor, note the `"language-javascript"` class:
 
@@ -59,22 +59,22 @@ const MailPace = require('@mailpace/mailpace.js');
 const client = new MailPace.DomainClient('API_TOKEN_HERE');
 
 client
-	.sendEmail({
-		from: 'test@test.com',
-		to: 'test@test.com',
-		subject: 'test',
-		htmlbody: 'HTML Email',
-	})
-	.then((r) => {
-		console.log(r);
-	});
+  .sendEmail({
+    from: 'test@test.com',
+    to: 'test@test.com',
+    subject: 'test',
+    htmlbody: 'HTML Email',
+  })
+  .then((r) => {
+    console.log(r);
+  });
 ```
 
 ## How this works
 
 Our original HTML consists of standard `<code>` blocks, which are generally used for code examples. These are surrounded by `<pre>` tags which "preserve" the formatting. This means you have to be a bit careful with tabs and line breaks inside your source code that are typically ignored by HTML parsers.
 
-When we include the class `language-XXXX` in the code block (where `XXXX` is one of the many supported Prism languages), the Prism JavaScript will treat this block as code and apply syntax highlighting to it. 
+When we include the class `language-XXXX` in the code block (where `XXXX` is one of the many supported Prism languages), the Prism JavaScript will treat this block as code and apply syntax highlighting to it.
 
 **It does this by breaking each known language token into individual `<span>` tags and categorizing them into types of language token (e.g. operator, punctuation, string etc.), using Regular Expressions.**
 

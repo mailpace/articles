@@ -5,7 +5,7 @@ excerpt: A short explanation of how to create a new Ruby on Rails app with a spe
 category: Guides
 ---
 
-Imagine you want to try out a new Ruby on Rails version, or have to use an old version for some strange reason. 
+Imagine you want to try out a new Ruby on Rails version, or have to use an old version for some strange reason.
 
 Here’s how to install an old version of Rails and create a new project with it:
 

@@ -35,9 +35,9 @@ Ultimately, it's not about the law, it's about ethics. If a sender really believ
 
 > Thanks for opening this email. We've logged that you read it, we'll log again next time you open the email. We know where you're located, and what device you're on. We're using this information to tweak our emails to get you to open and read more of our emails in the future
 
-In reality, this is creepy, most people would not want to see this in their inbox. 
+In reality, this is creepy, most people would not want to see this in their inbox.
 
-When you browse a public website, you generally accept being tracked by the website owner, you *begrudgingly* accept being tracked by 3rd parties. But when you open your emails? It's a private environment, **it should be safe for you to do whatever you want without being tracked**.
+When you browse a public website, you generally accept being tracked by the website owner, you _begrudgingly_ accept being tracked by 3rd parties. But when you open your emails? It's a private environment, **it should be safe for you to do whatever you want without being tracked**.
 
 ## What can you do to help?
 

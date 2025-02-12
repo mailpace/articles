@@ -10,7 +10,6 @@ At MailPace, we believe in simple, fast, and reliable email delivery for your ap
 
 But it can be a bit tricky to get right, so here's a quick guide on the hardest part (SPF).
 
-
 ## Why more than one?
 
 Using multiple SMTP providers can provide several benefits:
@@ -29,7 +28,7 @@ Once you've decided this is a good idea, you'll need to:
 
 ## Setting up
 
-Setting things up is quite easy - simply register and set up all your DKIM records etc. as usual. 
+Setting things up is quite easy - simply register and set up all your DKIM records etc. as usual.
 
 However there is one area to watch out for. The Sender Policy Framework (SPF) dictates which IPs can send from your domain, and it's being used more and more these days by inbox providers to check the validity of emails. At MailPace, and some providers, you have two options:
 
