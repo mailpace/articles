@@ -3,7 +3,6 @@ import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
 ---
 
-<template x-if="typeof emailPricing !== 'undefined'">
   <div x-data="emailPricing()" x-init="initSlider">
     <Headline subtitle="How many emails do you send and receive each month?" classes={{ container: 'px-8 mb-10' }} />
 
@@ -15,10 +14,10 @@ import Button from '~/components/ui/Button.astro';
         max="1000"
         x-model="sliderValue"
         @input="updatePricing"
-        class="w-4/5 h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+        class="w-4/5 h-4 min-h-6 sm:min-h-4 bg-gray-200 py-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
       />
       <div
-        class="text-white text-sm absolute bg-slate-600 p-2 rounded -translate-x-2/4"
+        class="text-white text-sm absolute bg-slate-600 p-2 rounded -translate-x-2/4 min-h-10 sm:min-h-4"
         x-show="showTooltip"
         x-bind:style="{ left: tooltipPosition.left + 'px', top: tooltipPosition.top + 'px' }"
         id="tooltip"
@@ -83,22 +82,14 @@ import Button from '~/components/ui/Button.astro';
       </div>
     </div>
   </div>
-</template>
 
 <script>
   import Alpine from 'alpinejs';
-  document.addEventListener('astro:after-preparation', () => {
-    Alpine.stopObservingMutations();
-  });
-  document.addEventListener('astro:page-load', () => {
-    document.dispatchEvent(new Event('alpine:init'));
-    Alpine.initTree(document.documentElement);
-    Alpine.startObservingMutations();
-  });
-</script>
 
-<script is:inline>
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('emailPricing', emailPricing);
+  });
+
   function emailPricing() {
     return {
       sliderValue: 200,
@@ -226,7 +217,7 @@ import Button from '~/components/ui/Button.astro';
   // JSONP Support is taken from https://github.com/camsong/fetch-jsonp/blob/master/src/fetch-jsonp.js
   // would import as a module but that doesn't work in astro along with alpine, for which
   // we need an inline script to ensure that emailPricing is defined before alpine inits
-  const defaultOptions = {
+  const jsonpDefaultOptions = {
     timeout: 5000,
     jsonpCallback: 'callback',
     jsonpCallbackFunction: null,
@@ -257,8 +248,8 @@ import Button from '~/components/ui/Button.astro';
   function fetchJsonp(_url, options = {}) {
     // to avoid param reassign
     let url = _url;
-    const timeout = options.timeout || defaultOptions.timeout;
-    const jsonpCallback = options.jsonpCallback || defaultOptions.jsonpCallback;
+    const timeout = options.timeout || jsonpDefaultOptions.timeout;
+    const jsonpCallback = options.jsonpCallback || jsonpDefaultOptions.jsonpCallback;
 
     let timeoutId;
 
