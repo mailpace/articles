@@ -101,9 +101,6 @@ import Button from '~/components/ui/Button.astro';
       increments: 0,
       pricePerThousand: 1.0,
 
-      basePriceFormatted: '$12',
-      pricePerThousandFormatted: '$1',
-
       showTooltip: true,
       tooltipPosition: { left: 0, top: 0 },
 
@@ -137,10 +134,7 @@ import Button from '~/components/ui/Button.astro';
         const additional = this.emailsSent > 10000 ? this.emailsSent - 10000 : 0;
         this.increments = Math.ceil(additional / 1000);
 
-        return new Intl.NumberFormat(this.region).format(additional, {
-          minimumFractionDigits: 0,
-          maximumFractionDigits: 0,
-        });
+        return new Intl.NumberFormat(this.region).format(additional);
       },
 
       updatePricing() {
@@ -159,8 +153,9 @@ import Button from '~/components/ui/Button.astro';
       },
 
       positionTooltip() {
-        const slider = document.getElementById('price-slider');
+        const slider = document.getElementById('price-slider') as HTMLInputElement;
         const tooltip = document.getElementById('tooltip');
+        if (!slider || !tooltip) return;
         const sliderRect = slider.getBoundingClientRect();
         const tooltipRect = tooltip.getBoundingClientRect();
         const sliderThumbWidth = 20; // approximate width of the slider thumb
@@ -203,7 +198,7 @@ import Button from '~/components/ui/Button.astro';
 
         try {
           const response = await fetchJsonp(url);
-          const json = await response.json();
+          const json = await (response as Response).json();
           this.basePrice = json.response.products[0].price.net;
           this.pricePerThousand = json.response.products[1].price.net;
           this.region = json.response.customer_country;
@@ -234,7 +229,6 @@ import Button from '~/components/ui/Button.astro';
       delete window[functionName];
     } catch (e) {
       console.error(e);
-      window[functionName] = undefined;
     }
   }
 
@@ -245,7 +239,7 @@ import Button from '~/components/ui/Button.astro';
     }
   }
 
-  function fetchJsonp(_url, options = {}) {
+  function fetchJsonp(_url, options = jsonpDefaultOptions) {
     // to avoid param reassign
     let url = _url;
     const timeout = options.timeout || jsonpDefaultOptions.timeout;
@@ -276,18 +270,6 @@ import Button from '~/components/ui/Button.astro';
 
       const jsonpScript = document.createElement('script');
       jsonpScript.setAttribute('src', `${url}${jsonpCallback}=${callbackFunction}`);
-      if (options.charset) {
-        jsonpScript.setAttribute('charset', options.charset);
-      }
-      if (options.nonce) {
-        jsonpScript.setAttribute('nonce', options.nonce);
-      }
-      if (options.referrerPolicy) {
-        jsonpScript.setAttribute('referrerPolicy', options.referrerPolicy);
-      }
-      if (options.crossorigin) {
-        jsonpScript.setAttribute('crossorigin', 'true');
-      }
       jsonpScript.id = scriptId;
       document.getElementsByTagName('head')[0].appendChild(jsonpScript);
 
