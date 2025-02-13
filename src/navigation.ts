@@ -1,8 +1,6 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 import { getGuidePosts } from './utils/blog';
 
-console.log(getGuidePosts().then(console.log));
-
 export const headerData = {
   links: [
     {
