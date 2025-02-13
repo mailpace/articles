@@ -279,3 +279,15 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
 
   return selectedPosts;
 }
+
+/* Used by the footer to return some blog posts */
+export const getGuidePosts = async (): Promise<Array<{ text: string; href: string }>> => {
+  const posts = await fetchPosts();
+  return posts
+    .filter((post) => post.category?.slug === 'guides')
+    .slice(0, 6)
+    .map((post) => ({
+      text: post.title,
+      href: post.permalink,
+    }));
+};

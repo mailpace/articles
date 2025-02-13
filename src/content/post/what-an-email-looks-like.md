@@ -1,5 +1,5 @@
 ---
-title: You don't know what an email looks like
+title: What an email really looks like
 publishDate: 2024-02-05T22:22:03.284Z
 excerpt: A detailed guide on how emails are structured, focused on how headers and Multipurpose Internet Mail Extensions (MIME types) are used to structure the email
 category: Guides

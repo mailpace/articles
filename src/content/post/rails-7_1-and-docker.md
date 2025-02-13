@@ -1,5 +1,5 @@
 ---
-title: 'Deploying Rails with Docker - killing our Pets'
+title: 'Deploying Rails with Docker'
 publishDate: 2023-09-23T22:12:03.284Z
 excerpt: 'What the new Dockerfile available in Rails 7.1 will mean for Rails deployments'
 category: Guides

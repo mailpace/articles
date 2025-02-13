@@ -1,4 +1,7 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getGuidePosts } from './utils/blog';
+
+console.log(getGuidePosts().then(console.log));
 
 export const headerData = {
   links: [
@@ -56,7 +59,7 @@ export const headerData = {
           href: getBlogPermalink(),
         },
         {
-          text: '📘 Email Guides',
+          text: '📘 Email & Dev Guides',
           href: getPermalink('guides', 'category'),
         },
         {
@@ -136,6 +139,7 @@ export const footerData = {
         { text: 'Newsletter', href: getPermalink('/newsletter') },
       ],
     },
+  { title: 'Guides' , links: await getGuidePosts() },
   ],
   secondaryLinks: [
     { text: 'Terms', href: getPermalink('/terms') },
@@ -148,6 +152,6 @@ export const footerData = {
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/mailpace' },
   ],
   footNote: `
-    Proudly hosted in the European Union 🇪🇺
+    Proudly made in the UK 🇬🇧 and hosted in the European Union 🇪🇺
   `,
 };

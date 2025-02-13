@@ -1,5 +1,8 @@
 ---
+import Image from 'astro/components/Image.astro';
 import Layout from '~/layouts/PageLayout.astro';
+
+import TransactionalEmailGraphic from "../assets/images/undraw_Subscriber_re_om92.svg";
 
 const metadata = {
   title: 'MailPace - Transactional email that people love.',
@@ -31,7 +34,7 @@ const metadata = {
         support ticket updates, password reset notifications, magic sign up links and many, many more.
       </p>
 
-      <img class="w-1/2 mx-auto my-10" alt="transactional email graphic" src="images/undraw_Subscriber_re_om92.svg" />
+      <Image class="w-1/2 mx-auto my-10" src={TransactionalEmailGraphic} alt="Transactional Email Graphic" />
 
       <h2 class="text-2xl text-center my-10">Transactional Emails vs Marketing Emails</h2>
 
